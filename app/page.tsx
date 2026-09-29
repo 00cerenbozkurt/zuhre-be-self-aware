@@ -19,7 +19,6 @@ import { ReadingResult } from '../lib/geminiFortuneService';
 import { Language } from '../lib/translations';
 
 import AmbientAudioPlayer from '../components/AmbientAudioPlayer';
-import IPhone18Frame from '../components/IPhone18Frame';
 import tarotDeck from './data/tarotDeck.json';
 
 export default function ZuhreApp() {
@@ -69,16 +68,15 @@ export default function ZuhreApp() {
   };
 
   return (
-    <IPhone18Frame platform={platform} isMuted={isMuted}>
-      <div
-        className={`min-h-full relative font-sans transition-colors ${
-          activeTab === 'discover'
-            ? 'bg-[#0A0A0D] text-white'
-            : activeTab === 'lens' || activeTab === 'meditation'
-            ? 'bg-[#F4F1EA] text-[#141317]'
-            : 'bg-white text-black'
-        }`}
-      >
+    <div
+      className={`min-h-screen relative font-sans transition-colors ${
+        activeTab === 'discover'
+          ? 'bg-[#0A0A0D] text-white'
+          : activeTab === 'lens' || activeTab === 'meditation'
+          ? 'bg-[#F4F1EA] text-[#141317]'
+          : 'bg-white text-black'
+      }`}
+    >
       {/* Global Interactive Tap Ripple Canvas */}
       <GlobalRippleCanvas platform={platform} />
 
@@ -208,7 +206,6 @@ export default function ZuhreApp() {
         language={language}
         onSubscribeSuccess={() => setIsSubscribed(true)}
       />
-      </div>
-    </IPhone18Frame>
+    </div>
   );
 }
