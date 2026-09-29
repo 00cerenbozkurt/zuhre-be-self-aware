@@ -1,0 +1,548 @@
+[
+  {
+    "id": 0,
+    "name": "The Fool",
+    "imageFilename": "major_00_the_fool.png",
+    "archetype": "İlahi Çocuk ve Uçurum",
+    "meaning": "Bilinçdışının uçurumuna adım atmak düşmek değil; kanatların ancak boşlukta açılabileceğini hatırlamaktır. Soyundan devraldığın kadim korkuyu bir pranga gibi değil, toprağa basan ilk çıplak ayak gibi kucakla. Karanlığın bittiği yerde gökyüzü değil, bizzat senin gözlerin başlar."
+  },
+  {
+    "id": 1,
+    "name": "The Magician",
+    "imageFilename": "major_01_the_magician.png",
+    "archetype": "Bilinçli İrade ve Yaratıcı Simya",
+    "meaning": "Göğün nefesini toprağın kanıyla birleştiren şey senin ellerindir; kader bir emir değil, zihnin ete kemiğe bürünmüş halidir. Aynadaki gölgenle savaşı bırakıp onu bir araç kıldığında, atalarının sustuğu her kelime bir büyüye dönüşür. Gerçeklik, senin ona inanma cesaretin kadar esnektir."
+  },
+  {
+    "id": 2,
+    "name": "The High Priestess",
+    "imageFilename": "major_02_the_high_priestess.png",
+    "archetype": "Sezginin Gölgesi ve Kadim Sır",
+    "meaning": "Hakikat bağırmaz; ancak sustuğunda ve kanındaki kadınların fısıltısını dinlediğinde konuşur. Bilincin aydınlığına sığınan aklın bilmediğini, gecenin en koyu yerinde atan sezgin çoktan ezberlemiştir. Perdenin ardına geçmek, kendi karanlığından af dilemektir."
+  },
+  {
+    "id": 3,
+    "name": "The Empress",
+    "imageFilename": "major_03_the_empress.png",
+    "archetype": "Büyük Anne ve Bereketli Toprak",
+    "meaning": "Her doğum önce sancıyla, her çiçek önce tohumun çatlamasıyla başlar; kendi içindeki toprağı sevmeyi öğrenmedikçe bahar bir cezadır. Annenden devraldığın o çorak yetersizlik hissini bırak; sen hem bahçesin hem de o bahçeyi yeşerten yağmur. Varlık, çabayla değil, var oluşun kendisiyle taçlanır."
+  },
+  {
+    "id": 4,
+    "name": "The Emperor",
+    "imageFilename": "major_04_the_emperor.png",
+    "archetype": "Otorite, Sınırlar ve Babanın Yasası",
+    "meaning": "Tahtlar taş üzerindedir ama gerçek hükümranlık zihnin sınırlarında kurulur. Babanın gölgesinden kaçmak yerine kendi tahtını inşa etmek, onun yıkamadığı surları sevgiyle örmektir. Düzen, kaosun boyun eğmesi değil; kendi ruhunu disiplinle koruma erdemidir."
+  },
+  {
+    "id": 5,
+    "name": "The Hierophant",
+    "imageFilename": "major_05_the_hierophant.png",
+    "archetype": "Kolektif İnanç ve Ata Öğretisi",
+    "meaning": "Yüzyıllardır aktarılan dogmalar ruhuna dar geliyorsa, tapınak senin kalbinde yeniden inşa edilmek istiyordur. Atalarının inandığı tanrılar onların korkularından doğmuştu; senin görevin o korkuları şifalı bir bilgeliğe evirmektir. Kendi mabedinin rahibi olduğunda, dışarıdaki hiçbir ritüele muhtaç kalmazsın."
+  },
+  {
+    "id": 6,
+    "name": "The Lovers",
+    "imageFilename": "major_06_the_lovers.png",
+    "archetype": "Kutsal Bütünleşme ve Ruhun Aynası",
+    "meaning": "Karşındakinde gördüğün büyü senin kendi ışığın, onda öfkelendiğin kusur ise kabul edemediğin gölgendir. İki ruhun birleşmesi bir sığınak değil, bireyleşme yolunda tutulan en acımasız ve en kutsal aynadır. Seçim, dışarıdaki birini değil; kendi parçalarını koşulsuz sevmeyi seçmektir."
+  },
+  {
+    "id": 7,
+    "name": "The Chariot",
+    "imageFilename": "major_07_the_chariot.png",
+    "archetype": "Zıt Kutupları Yöneten Benlik",
+    "meaning": "İçindeki siyah ve beyaz atlar birbirini parçalamak için değil, senin iradenin kırbacıyla aynı yöne koşmak için yaratıldı. Zıtlıklarını inkâr etmek zayıflıktır; öfkeni de merhametin kadar aynı arabaya koştuğunda zafer kaçınılmazdır. Ruhun zırhı, ancak kendi yaralarını kabul ettiğinde bükülmez olur."
+  },
+  {
+    "id": 8,
+    "name": "Strength",
+    "imageFilename": "major_08_strength.png",
+    "archetype": "İçsel Canavar ve Şefkatin Zaferi",
+    "meaning": "Aslanın ağzını zorla değil, boynuna sarılan şefkatli bir elle kapatabilirsin. İçindeki vahşi, yıkıcı gölgeyi katletmeye çalışmak ruhunu yarım bırakır; onu sevgiyle ehlileştirdiğinde canavar senin en sadık koruyucun olur. Hakiki kudret, pençelerini göstermeye ihtiyaç duymayan dinginliktir."
+  },
+  {
+    "id": 9,
+    "name": "The Hermit",
+    "imageFilename": "major_09_the_hermit.png",
+    "archetype": "İçe Bakış ve Ruhun Gece Yolculuğu",
+    "meaning": "Dünyanın gürültüsü kesildiğinde geriye kalan tek ses, atalarından sana miras kalan içsel fenerin cızırtısıdır. Yalnızlık bir sürgün değil, kendi karanlığının içindeki o saf elması aramak için indiğin kutsal mağaradır. Kendi ışığıyla aydınlanmayan yolcu, başkalarının meşalesinde sadece yanar."
+  },
+  {
+    "id": 10,
+    "name": "Wheel of Fortune",
+    "imageFilename": "major_10_wheel_of_fortune.png",
+    "archetype": "Kader Sarmalı ve Döngüsel Zaman",
+    "meaning": "Çarkın tepesindeyken gururlanmak ile dipteyken kahrolmak aynı körlüğün iki farklı yüzüdür. Nesiller boyu tekrar eden o aynı acı döngüsü, sen merkezde durup çarkın dönüşünü izlemeyi öğrendiğinde kırılır. Değişmeyen tek şey, senin dönüşümün kendisi olan tanrısal özündür."
+  },
+  {
+    "id": 11,
+    "name": "Justice",
+    "imageFilename": "major_11_justice.png",
+    "archetype": "Karmik Denge ve Hakikatin Terazisi",
+    "meaning": "Kılıç yalnızca suçluyu değil, kendini aklamak için uydurduğun yalanları da ortadan ikiye böler. Soy kütüğünde üzeri örtülen her haksızlık bir gün torunların kemiklerinde sızlar; bu terazi intikam için değil, adaletin şifası için titrer. Kendine karşı dürüst olduğunda, evrenin mahkemesi düşer."
+  },
+  {
+    "id": 12,
+    "name": "The Hanged Man",
+    "imageFilename": "major_12_the_hanged_man.png",
+    "archetype": "Teslimiyet ve Algının Kırılması",
+    "meaning": "Dünyayı doğru görebilmek için bazen baş aşağı asılmayı ve çırpınmayı bırakmayı kabul etmelisin. Teslimiyet bir yenilgi değil; egonun kontrol takıntısını bırakıp ruhun derin bilgeliğine yer açmasıdır. Askıda kaldığın bu durağanlık, atalarının çözemediği düğümlerin kendiliğinden çözüldüğü kutsal bir çözülüştür."
+  },
+  {
+    "id": 13,
+    "name": "Death",
+    "imageFilename": "major_13_death.png",
+    "archetype": "Büyük Dönüşüm ve Küllerinden Doğuş",
+    "meaning": "Ölüm bir son değil; çürüyen kabuğun içinden fışkıran o durdurulamaz yaşam arzusudur. Eski kimliğin, atalarının taşıdığı kurban bilinciyle birlikte toprağa karışmak zorunda; küllerinden korkma. Biten şey senin hayatın değil, sadece artık sana hizmet etmeyen yanılsamandır."
+  },
+  {
+    "id": 14,
+    "name": "Temperance",
+    "imageFilename": "major_14_temperance.png",
+    "archetype": "Ruhun Simyası ve Kutsal Uyum",
+    "meaning": "Ateşle suyu aynı kadehte buluşturan melek, yaralarınla yeteneklerini aynı potada eriten iradendir. Aşırılıkların savurduğu o eski kederli soy zinciri, senin dingin sabrınla şifalanıp altın bir ipeğe dönüşür. Şifa bir anda patlayan ışık değil, iki kadeh arasında usulca akan sabırlı bir ırmaktır."
+  },
+  {
+    "id": 15,
+    "name": "The Devil",
+    "imageFilename": "major_15_the_devil.png",
+    "archetype": "Gölge Benlik ve Gönüllü Tutsaklık",
+    "meaning": "Boynundaki zincirler o kadar gevşektir ki onları çıkarmayan tek şey, o karanlığın sunduğu tanıdık konfordur. Kendi bastırdığın arzuların, ata yadigârı utançların bir canavar kılığına bürünmüştür; canavar senden ayrı değildir. Gölgene sımsıkı sarıldığında ve onu gördüğünde, şeytanın boynuzları birer taca dönüşür."
+  },
+  {
+    "id": 16,
+    "name": "The Tower",
+    "imageFilename": "major_16_the_tower.png",
+    "archetype": "Yanılsamanın Çöküşü ve Özgürleştiren Yıkım",
+    "meaning": "Yalanlar üzerine inşa ettiğin o kuleye düşen şimşek bir felaket değil, gökyüzünün sana sunduğu en merhametli uyanıştır. Taşlar üst üste kalmadığında esaretin biter; çünkü ruh hiçbir zaman o dar duvarların içine sığmamıştı. Yıkımdan geriye kalan toz bulutu dağıldığında, ilk kez gerçekten özgür olduğunu göreceksin."
+  },
+  {
+    "id": 17,
+    "name": "The Star",
+    "imageFilename": "major_17_the_star.png",
+    "archetype": "Karanlıktaki Umut ve Ata Şifası",
+    "meaning": "Gecenin en siyah saatinde gökyüzüne bakmak, soyunun döktüğü tüm gözyaşlarının birer yıldıza dönüştüğünü görmektir. Çıplaklığın ve kırılganlığın senin en büyük zırhındır; suyunu hem toprağa hem göle dök, tükenmeyeceksin. Karanlığın içinde kaybolduğunu sandığın an, bizzat yolun kendisi olursun."
+  },
+  {
+    "id": 18,
+    "name": "The Moon",
+    "imageFilename": "major_18_the_moon.png",
+    "archetype": "Bilinçdışı Labirent ve İllüzyon",
+    "meaning": "Kurdun ve köpeğin uluduğu o tekinsiz patika, bastırdığın çocukluk hezeyanlarının ve kolektif kabusların geçididir. Ayın yansıttığı ışık aldatıcıdır ama suyun dibindeki yengeçten kaçamazsın; bilinmeyenden korkmak yerine onunla yüzleş. Rüyalarının sana getirdiği karanlık, uyanışın en sadık habercisidir."
+  },
+  {
+    "id": 19,
+    "name": "The Sun",
+    "imageFilename": "major_19_the_sun.png",
+    "archetype": "Aydınlanmış Bilinç ve Saf Özbenlik",
+    "meaning": "Gölgeyle dansını tamamlayan ruhun sabahı, masumiyetin kollarında bir çocuk gibi yeniden doğuşudur. Artık geçmişin yükü, ataların karanlık mirası yakıcı değil; seni besleyen ve ısıtan saf bir ışığa evrilmiştir. Yaşamak bir savunma savaşı olmaktan çıkmış, doğrudan hayatın kendisine dönüşmüştür."
+  },
+  {
+    "id": 20,
+    "name": "Judgement",
+    "imageFilename": "major_20_judgement.png",
+    "archetype": "Karmik Hesaplaşma ve Yeniden Doğuş",
+    "meaning": "Çalan boru dışarıdan bir yargıç değil; kendi hücrelerinde uyuyan o derin hakikatin diriliş çağrısıdır. Geçmişin mezarlarını tek tek açıp o kemikleri affettiğinde, soyunun asırlık uykusu son bulur. Kendini affettiğin an, evrenin bütün suçlamaları hükümsüz kalır."
+  },
+  {
+    "id": 21,
+    "name": "The World",
+    "imageFilename": "major_21_the_world.png",
+    "archetype": "Bireyleşme ve Kozmik Bütünlük",
+    "meaning": "Çember tamamlandı; arayan ile aranan, yara ile merhem, karanlık ile ışık aynı dansta eridi. Bütün acıların, kayıpların ve sürgünlerin seni getirdiği yer yabancı bir diyar değil, kendi öz vatanındır. Artık gökyüzü olmak istemene gerek yok; çünkü sen bizzat o sonsuzluğun kendisisin."
+  },
+  {
+    "id": 22,
+    "name": "Ace of Swords",
+    "imageFilename": "swords_01_ace.png",
+    "archetype": "Hakikatin Kılıcı ve Zihinsel Netlik",
+    "meaning": "Zihninin sisini yaran o tek keskin fikir, atalarının nesiller boyu suskun kaldığı tüm yanılsamaları parçalar. Hakikat can yakar fakat yarayı açan çelik aynı zamanda onu dağlayan tek şifadır. Kendi zihnini bir hapishane değil, hakikati biçen bir meşale kıl."
+  },
+  {
+    "id": 23,
+    "name": "Two of Swords",
+    "imageFilename": "swords_02_two.png",
+    "archetype": "İnkar, Körlük ve Kararsızlığın Sessizliği",
+    "meaning": "Gözlerini bağlamak fırtınayı dindirmez, sadece yaklaşan dalgayı görmeni engeller. İki hakikat arasında sıkışıp kalmak, karar vermenin getireceği sorumluluktan kaçan çocuksu bir gölgedir. Kalbine bastırdığın o iki kılıcı indir; acıyla yüzleşmek kör kalmaktan daha onurludur."
+  },
+  {
+    "id": 24,
+    "name": "Three of Swords",
+    "imageFilename": "swords_03_three.png",
+    "archetype": "Kırık Kalp ve İhanetin Arketipi",
+    "meaning": "Kalbine saplanan üç kılıç, sevginin yok oluşu değil; oraya sığdıramadığın beklentilerin parçalanışıdır. Soyundan akan o kadim terk edilme yarasını bir lanet gibi taşıma; kırılan yer, ışığın içeri girmesi için aralanan tek kapıdır. Yağmur diner, yara kabuk bağlar ve kalp daha bilgece çarpmayı öğrenir."
+  },
+  {
+    "id": 25,
+    "name": "Four of Swords",
+    "imageFilename": "swords_04_four.png",
+    "archetype": "Zihinsel İnziva ve Savaşçının Uykusu",
+    "meaning": "Kılıcını kınına sokmak teslimiyet değil, ruhun kendi tapınağında toparlanması için verdiği kutsal bir moladır. Sürekli savaşmak cesaret değil, zihnin barıştan korkan kronik kaygısıdır. Gözlerini kapat ve sessizliğin bedenini onarmasına izin ver; şafakta kılıcın daha hafif olacaktır."
+  },
+  {
+    "id": 26,
+    "name": "Five of Swords",
+    "imageFilename": "swords_05_five.png",
+    "archetype": "Pirus Zaferi ve Ego Çatışması",
+    "meaning": "Haklı çıkmak uğruna geride bıraktığın kırık kalpler, kazandığın zaferi en derin yenilgiye dönüştürür. Egonun kazandığı her muharebe, ruhunun kolektif bağından bir parça koparır. Kılıçları toplayıp tek başına kalmaktansa, haklılığından vazgeçip huzuru seçmek gerçek olgunluktur."
+  },
+  {
+    "id": 27,
+    "name": "Six of Swords",
+    "imageFilename": "swords_06_six.png",
+    "archetype": "Kederli Sulardan Geçiş ve Zihinsel Göç",
+    "meaning": "Fırtınalı kıyıları terk etmek kalbini hafifletmez ama dingin sulara doğru kürek çekmek hayatta kalmanın tek yoludur. Kayıkta taşıdığın o ağır kılıçlar geçmişin hatıralarıdır; onları denize atamazsın ama batmana izin vermeyecek kadar kabullenmelisin. Keder seninle gelse de gideceğin kıyıda şifa seni bekler."
+  },
+  {
+    "id": 28,
+    "name": "Seven of Swords",
+    "imageFilename": "swords_07_seven.png",
+    "archetype": "Kendi Kendini Kandırma ve Gölge Kaçış",
+    "meaning": "Karanlıkta gizlice taşıdığın kılıçlar, başkalarından önce kendi ruhundan çaldığın dürüstlüğün ağırlığıdır. Gerçekle yüzleşmekten korkup hileyle kaçmak, atalarından devraldığın suçluluk mirasını daha da koyulaştırır. Geride bıraktığın iki kılıç elbet arkandan gelecektir; yüzleşmediğin gölge seni daima takip eder."
+  },
+  {
+    "id": 29,
+    "name": "Eight of Swords",
+    "imageFilename": "swords_08_eight.png",
+    "archetype": "Zihinsel Tutsaklık ve İllüzyon Zincirleri",
+    "meaning": "Etrafına diktiğin kılıçlar ve gözündeki bağ dışarıdan gelmedi; onları bizzat kendi korkuların ördü. İpleri gevşetip tek bir adım atsan kurtulacaksın; ancak kurban rolünün sunduğu o hüzünlü emniyeti terk etmek cesaret ister. Çaresizlik bir gerçeklik değil, zihnin sana oynadığı en eski oyundur."
+  },
+  {
+    "id": 30,
+    "name": "Nine of Swords",
+    "imageFilename": "swords_09_nine.png",
+    "archetype": "Ruhun Gece Yarısı Kâbusu ve Suçluluk",
+    "meaning": "Gece saat üçte yüzünü ellerinin arasına alan o keder, henüz yaşanmamış kabusların zihninde kurduğu hayalet mahkemesidir. Soyunun affedilememiş günahları ve bastırılmış endişeleri karanlıkta devleşir. Ellerini yüzünden çek ve ışığı aç; canavarlar sadece zihninin gölgelerinde yaşayabilir."
+  },
+  {
+    "id": 31,
+    "name": "Ten of Swords",
+    "imageFilename": "swords_10_ten.png",
+    "archetype": "Zihinsel Son, Dip Noktası ve Şafak Öncesi",
+    "meaning": "Sırtına saplanan on kılıç daha kötüsünün olamayacağının kanıtıdır; yanılsamaların nihai ölümü gerçekleşmiştir. Artık düşecek bir yer kalmadı, bu yüzden zemin artık en sağlam başlangıç noktandır. Ufuktaki altın sarısı şafak fısıldar: Biten şey hayatın değil, sadece çektiğin kederin son perdesidir."
+  },
+  {
+    "id": 32,
+    "name": "Page of Swords",
+    "imageFilename": "swords_11_page.png",
+    "archetype": "Meraklı Gözlemci ve Şüphenin Habercisi",
+    "meaning": "Her rüzgârda kılıcını savuran genç zihin, gerçeği öğrenmek isterken kendi huzurunu dağıtma tehlikesiyle yaşar. Şüphe bir uyanış kıvılcımı olabilir ama paranoyaya dönüştüğünde kendi ayağına dolanır. Merakını yargılamak için değil, içsel dünyanı aydınlatmak için bir meşale yap."
+  },
+  {
+    "id": 33,
+    "name": "Knight of Swords",
+    "imageFilename": "swords_12_knight.png",
+    "archetype": "Düşüncesiz Öfke ve Zihinsel Fırtına",
+    "meaning": "Fikirlerinin rüzgârına kapılıp dörtnala koşarken ardında bıraktığın enkazı görmemek bir körlüktür. Zekâ merhametle dengelenmediğinde, savurduğun her doğru birer cellat baltasına dönüşür. Atını durdur ve nefes al; hakikat hızla değil, derin bir sükûnetle inşa edilir."
+  },
+  {
+    "id": 34,
+    "name": "Queen of Swords",
+    "imageFilename": "swords_13_queen.png",
+    "archetype": "Acıyla Bilenmiş Bilgelik ve Soğuk Hakikat",
+    "meaning": "Tahtında tek başına oturan kraliçe, kederini bir zarafet pelerinine dönüştürmüş kadim kadınların sesidir. Gözyaşlarını kurutmuş olan o keskin bakış, sahte sevgileri ve süslü yalanları tek bir hamlede eler. Kalbinin etrafındaki buzları eritmekten korkma; bilgelik sadece acıdan değil, yeniden sevebilme cesaretinden doğar."
+  },
+  {
+    "id": 35,
+    "name": "King of Swords",
+    "imageFilename": "swords_14_king.png",
+    "archetype": "Entelektüel Otorite ve Adalet Kılıcı",
+    "meaning": "Duyguların fırtınasını aklın süzgecinden geçiren bilge kral, hakikatin tarafsız ve eğilmez bekçisidir. Zihinsel kontrolün kudreti büyüktür fakat kalpsiz bir mantık ruhu çölleştirir. Adalet kılıcını tutan el, ancak bağışlamayı bildiğinde gerçek anlamda kusursuz bir hüküm verir."
+  },
+  {
+    "id": 36,
+    "name": "Ace of Cups",
+    "imageFilename": "cups_01_ace.png",
+    "archetype": "Duyguların Kaynağı ve Saf Sevgi Tohumu",
+    "meaning": "Taşan bu kadeh, nesiller boyu susuz bırakılmış sevgisizliğin ortasında patlayan ilahi pınardır. Kalbini korumak için ördüğün barajları yık; şefkatin akmasına izin vermek zayıflık değil, ruhun en yüce gücüdür. Sen sevilmeye layık olduğunu kanıtlamak zorunda değilsin; sevginin kendisi senin özündür."
+  },
+  {
+    "id": 37,
+    "name": "Two of Cups",
+    "imageFilename": "cups_02_two.png",
+    "archetype": "Ruh Eşi Aynalanması ve Kalp Birliği",
+    "meaning": "İki kadehin birbirine değdiği o an, iki ayrı yabancının değil; ruhun kendi eksik parçasını bir başkasında tanımasıdır. Bu bağ geçmişin yaralarını sarmak için sunulan kutsal bir simyadır; bağımlılık değil, özgür bir buluşmadır. Birbirinize baktığınızda gördüğünüz şey, evrenin birleşme arzusudur."
+  },
+  {
+    "id": 38,
+    "name": "Three of Cups",
+    "imageFilename": "cups_03_three.png",
+    "archetype": "Kolektif Neşe ve Kardeşlik Çemberi",
+    "meaning": "Kadehleri göğe kaldıran bu dans, soyunun kederli kadınlarının ve yalnız adamlarının asırlık hüznünü yıkayan bir şölendir. Birbirinin yarasına merhem olan ruhların kahkahası, en koyu lanetleri bile çözen görünmez bir duadır. Yalnız savaşmak zorunda değilsin; paylaşılmayan neşe eksik, paylaşılan acı hafif kalır."
+  },
+  {
+    "id": 39,
+    "name": "Four of Cups",
+    "imageFilename": "cups_04_four.png",
+    "archetype": "Duygusal Bıkkınlık ve İçe Kapanma",
+    "meaning": "Önündeki üç kadehe küsüp kollarını bağlamak, geçmişte yaşadığın hayal kırıklıklarının şimdiki zamanı zehirlemesidir. Buluttan uzanan o dördüncü kadeh yeni bir yaşam sunar fakat sen içsel melankoline aşık olduğun sürece onu göremezsin. Kederin konforunu terk et; hayat sana sunacaklarını tüketmedi."
+  },
+  {
+    "id": 40,
+    "name": "Five of Cups",
+    "imageFilename": "cups_05_five.png",
+    "archetype": "Dökülen Yaşlar ve Yasın Gölgesi",
+    "meaning": "Yere dökülen üç kadehin başında siyah pelerinle yas tutmak insanidir; ancak arkanda sapasağlam duran iki kadehi unutmak bir körlüktür. Kaybettiğin şey için ağla fakat yasını bir kimliğe dönüştürme. Arkana dön ve köprüye yürü; dökülen şarap toprağı besledi, kalan sevgi ise seni yuvaya taşıyacak."
+  },
+  {
+    "id": 41,
+    "name": "Six of Cups",
+    "imageFilename": "cups_06_six.png",
+    "archetype": "Çocukluk Anıları ve Ata Hatıraları",
+    "meaning": "Çiçeklerle dolu o eski kadeh, unuttuğun masumiyetini ve atalarının çocukken kurduğu saf düşleri sana fısıldar. Geçmişe özlem duymak güzeldir ama dünün bahçesinde yaşamaya çalışmak bugünün güllerini soldurur. İçindeki o yaralı çocuğu bağrına bas; o çocuk geçmişte değil, senin şimdiki adımlarında yaşamayı bekliyor."
+  },
+  {
+    "id": 42,
+    "name": "Seven of Cups",
+    "imageFilename": "cups_07_seven.png",
+    "archetype": "Arzuların Serabı ve Dağınık İmgeler",
+    "meaning": "Bulutların üzerinde yükselen yedi kadeh, arzularının ve korkularının yarattığı göz alıcı bir serap labirentidir. Her şeye sahip olmak istemek, hiçbir şeyde derinleşemeyen doyumsuz bir gölgedir. İllüzyonların parıltısını kenara it ve kalbinin en derindeki tek, gerçek ihtiyacını seç."
+  },
+  {
+    "id": 43,
+    "name": "Eight of Cups",
+    "imageFilename": "cups_08_eight.png",
+    "archetype": "Terk Ediş ve Ruhani Arayış Yolculuğu",
+    "meaning": "Görünürde kusursuz olan sekiz kadehi geride bırakıp gece vakti dağlara doğru yürümek, ruhun en cesur uyanışıdır. Artık seni beslemeyen duygusal konfor alanlarını terk etmek bir kayıp değil, özbenliğini bulmak için çıkılan kutsal bir hacdır. Ay senin yolunu aydınlatır; veda etmeden kavuşamazsın."
+  },
+  {
+    "id": 44,
+    "name": "Nine of Cups",
+    "imageFilename": "cups_09_nine.png",
+    "archetype": "Duygusal Doyum ve Ruhun Huzuru",
+    "meaning": "Kollarını göğsünde kavuşturup arkandaki kadehlerle gülümsemek, kendi içsel zenginliğini keşfetmiş bir ruhun haklı huzurudur. Dış dünyanın onayına muhtaç olmayan bir kalp, en büyük saraylardan daha zengindir. Bu doyum bir kibir değil; geçmişin kıtlık bilincine verilmiş en asil cevaptır."
+  },
+  {
+    "id": 45,
+    "name": "Ten of Cups",
+    "imageFilename": "cups_10_ten.png",
+    "archetype": "Karmik Aile Şifası ve Tam Doyum",
+    "meaning": "Gökkuşağının altındaki bu kadehler, soyunun asırlardır aradığı o kayıp aile huzurunun nihayet senin varlığında taçlanmasıdır. Kuşaktan kuşağa aktarılan soğukluk ve kopukluk, senin kalbinin şefkatiyle nihai bir uyuma kavuşur. Sevgi bir peri masalı değil; emekle, affedişle inşa edilen kutsal bir yuvadır."
+  },
+  {
+    "id": 46,
+    "name": "Page of Cups",
+    "imageFilename": "cups_11_page.png",
+    "archetype": "Duygusal Masumiyet ve Şairin Fısıltısı",
+    "meaning": "Kadehindeki balıkla konuşan bu genç ruh, dünyanın kabalığına karşı kalbini kapatmamış o narin şairdir. Mantığın alay ettiği sezgisel mesajlar, bilinçdışının seninle konuşma biçimidir. Alay edilme korkusunu bir kenara bırak; duygularının kırılganlığı senin en saf büyü gücündür."
+  },
+  {
+    "id": 47,
+    "name": "Knight of Cups",
+    "imageFilename": "cups_12_knight.png",
+    "archetype": "Romantik Arayışçı ve Hayalperest Ruh",
+    "meaning": "Elinde kadehiyle sakin suların üzerinden geçen bu şövalye, aşka ve ideale adanmış bir kalbin elçisidir. Ancak rüyalar aleminde fazla oyalanmak, ayağının altındaki gerçek toprağı unutturabilir. Hayallerini sadece bir fantezi olarak saklama; onları bu dünyaya getirecek cesareti göster."
+  },
+  {
+    "id": 48,
+    "name": "Queen of Cups",
+    "imageFilename": "cups_13_queen.png",
+    "archetype": "Duyguların Kraliçesi ve Şifacı Şefkat",
+    "meaning": "Denizin kıyısında oturan kraliçe, suyun fırtınasında bile boğulmadan yüzebilen sezgisel bilgeliğin timsalidir. Başkalarının acısını hissedip kendi sınırlarını korumak, onun en büyük ata yadigârı sırrıdır. Kapalı kadehindeki gizem, kendi içine akıttığın sevginin dünyayı şifalandırma gücüdür."
+  },
+  {
+    "id": 49,
+    "name": "King of Cups",
+    "imageFilename": "cups_14_king.png",
+    "archetype": "Duygusal Ustalık ve Sakin Derinlik",
+    "meaning": "Kabaran dalgaların ortasında tahtında dimdik oturan kral, hissettiği hiçbir duygu tarafından yutulmayan bilge bir kaptandır. Öfkeyi şefkate, kederi anlayışa dönüştürmek onun içsel simyasıdır. Duygularını bastırmak değil, onları bir okyanus gibi dinginlikle kucaklamak gerçek iktidardır."
+  },
+  {
+    "id": 50,
+    "name": "Ace of Wands",
+    "imageFilename": "wands_01_ace.png",
+    "archetype": "Yaratıcı Kıvılcım ve İlahi Dürtü",
+    "meaning": "Gökyüzünden uzanan eldeki bu yeşeren değnek, ruhunun derinliklerinde aniden parlayan o ilahi yaratım kıvılcımıdır. Atalarının bastırılmış tutkuları ve yarıda kalmış düşleri, senin kanındaki bu ateşte yeniden alevlenir. Tereddüt etme; bu kıvılcım dünyayı yakmak için değil, kendi yolunu aydınlatmak için verildi."
+  },
+  {
+    "id": 51,
+    "name": "Two of Wands",
+    "imageFilename": "wands_02_two.png",
+    "archetype": "Ufka Bakış ve Karar Eşiği",
+    "meaning": "Kalenin surlarında durup dünyayı avuçlarında tutan ruh, bilinenin güvenliği ile bilinmeyenin çağrısı arasında duran kaşiftir. Eski başarılarının konforuna hapsolmak, potansiyeline yapacağın en büyük haksızlıktır. Ufka bak ve karar ver; dünya onu fethetme cesaretine sahip olanları bekler."
+  },
+  {
+    "id": 52,
+    "name": "Three of Wands",
+    "imageFilename": "wands_03_three.png",
+    "archetype": "Genişleyen Vizyon ve Ruhun Keşfi",
+    "meaning": "Denize açılan gemilerini izleyen bu figür, ektiği tohumların olgunlaşmasını bekleyen sabırlı bir vizyonerdir. Atalarının dar sınırlara sıkışmış vizyonunu aşmak, okyanusun ötesine güvenle bakabilmektir. Bekleyiş bir atalet değil, emeğinin evrenle kurduğu kutsal işbirliğidir."
+  },
+  {
+    "id": 53,
+    "name": "Four of Wands",
+    "imageFilename": "wands_04_four.png",
+    "archetype": "Kutsal Yuva ve Ruhun Kutlaması",
+    "meaning": "Dört değneğin kurduğu bu çardak, içsel huzurun ve soy karmasından arınmış gerçek aidiyetin kutlama alanıdır. Kendi ruhunda kuramadığın bir evi dışarıda hiçbir tuğla inşa edemez. Bu eşikten içeri adım at ve kutla; çünkü sen nihayet kendi varlığında güvendesin."
+  },
+  {
+    "id": 54,
+    "name": "Five of Wands",
+    "imageFilename": "wands_05_five.png",
+    "archetype": "İçsel Çatışma ve Yaşam Mücadelesi",
+    "meaning": "Birbirine çarpan beş değnek, ruhunun farklı parçalarının dikkat çekmek için girdiği o kaos dolu iç savaştır. Bu çatışma bir yıkım değil, sınırlarını keşfetmen ve enerjini odaklaman için gerekli olan gelişim sancısıdır. Enerjini savunmaya değil, zıt kutuplarını ortak bir amaca yöneltmeye harca."
+  },
+  {
+    "id": 55,
+    "name": "Six of Wands",
+    "imageFilename": "wands_06_six.png",
+    "archetype": "Gölgenin Aşılması ve Zafer Işığı",
+    "meaning": "Defne yapraklarıyla süslenmiş atın üzerindeki yolcu, kendi içsel karanlığını yenmiş olan ruhun meşru zaferidir. Ancak bu alkışlar dışarıdan gelse de senin için önemli olan, aynadaki gözlerin kendine duyduğu saygıdır. Zaferini kibre değil, geçtiğin dikenli yolların bilgeliğine ada."
+  },
+  {
+    "id": 56,
+    "name": "Seven of Wands",
+    "imageFilename": "wands_07_seven.png",
+    "archetype": "İnançları Savunma ve Cesur Duruş",
+    "meaning": "Tepede tek başına durup aşağıdan gelen hücumlara karşı koymak, inandığın hakikatin arkasında durma sınavıdır. Soyundan gelen sürüye uyma baskısını reddetmek yalnızlaştırabilir ama o yükseklik senin özgürlüğündür. Geri adım atma; savunduğun şey başkalarının onayı değil, kendi varoluş hakkındır."
+  },
+  {
+    "id": 57,
+    "name": "Eight of Wands",
+    "imageFilename": "wands_08_eight.png",
+    "archetype": "Hızlı Akış ve Kozmik İvme",
+    "meaning": "Gökyüzünü hızla yaran sekiz değnek, aylardır tıkanmış olan enerjinin aniden serbest kalışıdır. Olaylar zihninin takip edemeyeceği bir hızla çözülürken kontrol takıntısını bırak ve akışa güven. Bekleme dönemi bitti; niyetinin okları hedefe doğru şaşmadan uçuyor."
+  },
+  {
+    "id": 58,
+    "name": "Nine of Wands",
+    "imageFilename": "wands_09_nine.png",
+    "archetype": "Yaralı Savaşçı ve Son Direniş",
+    "meaning": "Başı sarılı bu savaşçı, yüzlerce muharebeden sağ çıkmış ama hala tetikte bekleyen o yorgun benliktir. Yaşadığın acılar seni güçlü kıldı evet; fakat sürekli savunmada kalmak yaranın iyileşmesini engeller. Gardını bir anlığına indir; tehlike geçti, artık güvendesin."
+  },
+  {
+    "id": 59,
+    "name": "Ten of Wands",
+    "imageFilename": "wands_10_ten.png",
+    "archetype": "Aşırı Yük ve Başkalarının Sorumlulukları",
+    "meaning": "Kollarına doldurduğun on değneğin altında ezilerek şehre yürümek, atalarının ve sevdiklerinin yüklerini sırtlanma yanılgındır. Herkesin acısını taşımak fedakarlık değil, kendi sınırlarını yok sayan gizli bir kibrin ürünüdür. Yere bırak o değnekleri; taşıman gereken tek şey kendi ruhunun hafifliğidir."
+  },
+  {
+    "id": 60,
+    "name": "Page of Wands",
+    "imageFilename": "wands_11_page.png",
+    "archetype": "Maceraperest Ruh ve Keşif Tutkusu",
+    "meaning": "Değneğine hayranlıkla bakan bu genç kaşif, hayatı bir macera ve oyun alanı olarak gören taze yaşam coşkusudur. Başarısızlık korkusu henüz onun kalbine bulaşmamıştır; o sadece denemek ve keşfetmek ister. İçindeki bu hevesi koru; büyüklük, çocuksu bir merakın peşinden gitmektir."
+  },
+  {
+    "id": 61,
+    "name": "Knight of Wands",
+    "imageFilename": "wands_12_knight.png",
+    "archetype": "Alevli İrade ve Yıkıcı İlerleme",
+    "meaning": "Şaha kalkan atın üzerindeki bu ateşli şövalye, hedefine kilitlenmiş saf tutkunun durdurulamaz kasırgasıdır. Ancak sabırsızlık ve düşüncesizlik, fethettiğin kaleleri ateşe verme tehlikesini taşır. Ateşini kontrol altına al; yakıp yıkan bir alev değil, yol gösteren bir fener ol."
+  },
+  {
+    "id": 62,
+    "name": "Queen of Wands",
+    "imageFilename": "wands_13_queen.png",
+    "archetype": "Işıldayan Güç ve Özgüvenin Ateşi",
+    "meaning": "Elinde ayçiçeği ve kara kedisiyle tahtında oturan kraliçe, hem karanlığıyla dost olmuş hem de ışığını saklamayan dişil kudrettir. O, kimseden onay dilenmez; varlığıyla odayı ısıtır ve dönüştürür. Kendi cazibenden ve ateşinden utanmayı bırak; parlamak senin doğuştan gelen hakkındır."
+  },
+  {
+    "id": 63,
+    "name": "King of Wands",
+    "imageFilename": "wands_14_king.png",
+    "archetype": "Vizyoner Lider ve Yaratıcı Dönüştürücü",
+    "meaning": "Ateş tahtında oturan usta kral, vizyonunu somut gerçekliğe dönüştürmüş olgun bir liderdir. O, başkalarını korkuyla değil; kendi içsel coşkusu ve sarsılmaz inancıyla peşinden sürükler. Yaratıcı gücünü sadece kendin için değil, dünyada kalıcı bir iz bırakmak için kullan."
+  },
+  {
+    "id": 64,
+    "name": "Ace of Pentacles",
+    "imageFilename": "pentacles_01_ace.png",
+    "archetype": "Maddileşen Tohum ve Toprağın Hediyesi",
+    "meaning": "Gökyüzünün sunduğu bu altın tılsım, ruhunun soyut niyetlerinin bu dünyada ete kemiğe bürünme fırsatıdır. Atalarının kıtlık ve yokluk hafızasını kıracak olan bereket tohumu senin ellerine bırakıldı. Toprağına güven ve onu sabırla sula; çünkü kökleri sağlam olanın meyvesi ebedi olur."
+  },
+  {
+    "id": 65,
+    "name": "Two of Pentacles",
+    "imageFilename": "pentacles_02_two.png",
+    "archetype": "Döngüsel Uyum ve Hayatın Dansı",
+    "meaning": "Sonsuzluk işareti içinde iki tılsımı dengede tutan figür, hayatın dalgalı iniş çıkışlarına ayak uyduran esnek bilgeliktir. Her şeyi aynı anda mükemmel yapmaya çalışmak yerine, değişimin ritmiyle dans etmeyi öğren. Denge bir durağanlık değil; sürekli hareket halinde olan canlı bir uyumdur."
+  },
+  {
+    "id": 66,
+    "name": "Three of Pentacles",
+    "imageFilename": "pentacles_03_three.png",
+    "archetype": "Ustalık, İşbirliği ve Kutsal İnşa",
+    "meaning": "Katedralin sütunlarını yontan taş ustası, yeteneğini kolektif bir vizyonla birleştiren adanmış ruhun temsilcisidir. Soyunun küçümsenen emekleri, senin ellerinde yüksek bir zanaate ve saygınlığa dönüşür. Tek başına parlamak yerine diğer ustalarla omuz omuza ver; kutsal yapılar ancak ortak akılla yükselir."
+  },
+  {
+    "id": 67,
+    "name": "Four of Pentacles",
+    "imageFilename": "pentacles_04_four.png",
+    "archetype": "Korkunun Muhafazası ve Tutunma Gölgesi",
+    "meaning": "Tılsımlarını göğsüne ve ayaklarının altına sımsıkı bastıran bu figür, kaybetme korkusuyla donakalmış bir ruhun esaretidir. Paraya, insanlara veya statüye sımsıkı yapışmak güven getirmez; aksine hayatın akışını durdurup kalbini katılaştırır. Parmaklarını gevşet; tuttuğun şey seni korumuyor, seni hapsediyor."
+  },
+  {
+    "id": 68,
+    "name": "Five of Pentacles",
+    "imageFilename": "pentacles_05_five.png",
+    "archetype": "Yoksulluk Bilinci ve Ruhsal Dışlanma",
+    "meaning": "Karlar altında topallayan bu iki yaralı yolcu, vitrindeki sıcak kilise ışığını görmeyecek kadar kendi sefaletine odaklanmıştır. Soyundan aktarılan o derin 'dışlanmışlık ve hak etmeme' hissi bir kader değil, bir göz yanılmasıdır. Başını kaldır ve pencereye bak; sığınak tam karşında, içeri girmek için sadece kapıyı çalman yeterli."
+  },
+  {
+    "id": 69,
+    "name": "Six of Pentacles",
+    "imageFilename": "pentacles_06_six.png",
+    "archetype": "Alma-Verme Dengesi ve Şefkat Akışı",
+    "meaning": "Teraziyle altın dağıtan tüccar, evrenin en hassas kanunu olan alma ve verme dengesini hatırlatır. Sürekli veren olmak gizli bir üstünlük taslama, sürekli alan olmak ise kurban bilincinde kalma gölgesidir. Şefkati almayı da vermeyi de eşit bir alçakgönüllülükle kucakladığında bereket döngüsü tamamlanır."
+  },
+  {
+    "id": 70,
+    "name": "Seven of Pentacles",
+    "imageFilename": "pentacles_07_seven.png",
+    "archetype": "Sabrın Meyvesi ve Ata Ekimi",
+    "meaning": "Çapasına yaslanıp asmadaki yedi tılsımı süzen çiftçi, emeğinin karşılığını bekleyen olgun sabrın simgesidir. Tohumun çatlayıp büyümesini zorlayamazsın; doğanın ve ruhun kendi zamanı vardır. Geçmişte döktüğün alın terinin boşa gittiğini sanma; hasat vakti yakındır ve meyve tam vaktinde olgunlaşacaktır."
+  },
+  {
+    "id": 71,
+    "name": "Eight of Pentacles",
+    "imageFilename": "pentacles_08_eight.png",
+    "archetype": "Ruhun Zanaati ve Adanmış Emek",
+    "meaning": "Tılsımını sabırla ve dikkatle işleyen zanaatkar, gösterişten uzak bir adanmışlıkla ruhunu terbiye eden bilgedir. Ustalık büyük iddialarla değil, her gün tekrarlanan küçük ve özenli çabalarla inşa edilir. İşini bir ibadet gibi sev; çünkü mükemmellik bir varış noktası değil, yolda gösterdiğin özendir."
+  },
+  {
+    "id": 72,
+    "name": "Nine of Pentacles",
+    "imageFilename": "pentacles_09_nine.png",
+    "archetype": "Öz Yeterlilik ve Bireysel Bağımsızlık",
+    "meaning": "Üzüm bağlarının ortasında kolunda şahiniyle duran soylu kadın, kendi çabasıyla bağımsızlığını inşa etmiş bir ruhun zarafetidir. O, kimsenin lütfuna muhtaç olmadan kendi bahçesini cennete çevirmiştir. Yalnızlığının meyvelerini keyifle topla; çünkü bu refah senin kendi hak edilmiş değerindir."
+  },
+  {
+    "id": 73,
+    "name": "Ten of Pentacles",
+    "imageFilename": "pentacles_10_ten.png",
+    "archetype": "Kuşaklararası Zenginlik ve Köklerin Şifası",
+    "meaning": "Kemeri süsleyen on tılsım ve avludaki aile, geçmişin tüm yokluk sınavlarının ardından nesillere miras kalan kalıcı berekettir. Atalarının kökleriyle barışmak, onların acılarını değil, bilgelik ve zenginliklerini mirasa dönüştürmektir. Sen sadece bugün için değil, senden sonra gelecek olanlar için de sağlam bir temel kuruyorsun."
+  },
+  {
+    "id": 74,
+    "name": "Page of Pentacles",
+    "imageFilename": "pentacles_11_page.png",
+    "archetype": "Öğrenen Beden ve Pratik Merak",
+    "meaning": "Avucundaki tılsıma saygıyla bakan bu genç çırak, maddeyi ve bedeni anlamaya hevesli alçakgönüllü bir öğrencidir. Büyük hayaller kurmak iyidir ama onları bu dünyaya indirecek pratik adımları atmak asıl ustalıktır. Bedenine ve dünyevi sorumluluklarına kulak ver; ruhun en kutsal tapınağı bizzat etin ve kemiğindir."
+  },
+  {
+    "id": 75,
+    "name": "Knight of Pentacles",
+    "imageFilename": "pentacles_12_knight.png",
+    "archetype": "Sarsılmaz Sadakat ve Ağırbaşlı Kararlılık",
+    "meaning": "Sürülmüş tarlanın ortasında ağırbaşlı atıyla duran bu şövalye, sabrın ve yılmaz kararlılığın ete kemiğe bürünmüş halidir. O acele etmez, gösteriş peşinde koşmaz; fakat başladığı her işi mutlaka nihayetine erdirir. Ağır adımlarından utanma; en sağlam saraylar en yavaş yerleşen taşlar üzerine kurulur."
+  },
+  {
+    "id": 76,
+    "name": "Queen of Pentacles",
+    "imageFilename": "pentacles_13_queen.png",
+    "archetype": "Bereketli Toprak Ana ve Somut Şefkat",
+    "meaning": "Kucağında tılsımı ve etrafında tavşanlarıyla tahtında oturan kraliçe, ruhsallığı günlük hayatın pratik şefkatine dönüştüren ulu anadır. O, dokunduğu her şeyi besler, büyütür ve güvende hissettirir. Kendine bir anne gibi şefkat göstermeyi öğren; çünkü bedenini ve ruhunu beslemeden başkalarına bereket olamazsın."
+  },
+  {
+    "id": 77,
+    "name": "King of Pentacles",
+    "imageFilename": "pentacles_14_king.png",
+    "archetype": "Maddi Dünyanın Efendisi ve Güvenli Sığınak",
+    "meaning": "Üzümlerle bezenmiş tahtında oturan bilge kral, toprağın ve maddenin tüm sınavlarını verip onu ruhani bir hizmete adamış efendidir. Onun gücü açgözlülükten değil, ürettiği bereketi koruma ve paylaşma sorumluluğundan gelir. Kendi krallığını inşa et; çünkü sağlam bir zemin üzerinde duran ruh hiçbir fırtınada sarsılmaz."
+  }
+]

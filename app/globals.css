@@ -1,26 +1,176 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --font-editorial: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mystic: 'Cormorant Garamond', Georgia, serif;
+  --font-cinzel: 'Cinzel', Georgia, serif;
+  
+  /* The Pattern Warm Paper Palette */
+  --pattern-paper: #F4F1EA;
+  --pattern-paper-subtle: #EBE6DC;
+  --pattern-ink: #141316;
+  --pattern-ink-muted: #5A5862;
+  
+  /* The Pattern Cosmic Twilight Palette */
+  --pattern-cosmic-bg: #0B0B0E;
+  --pattern-cosmic-surface: #141419;
+  --pattern-cosmic-card: #1C1B23;
+  --pattern-cosmic-border: rgba(255, 255, 255, 0.12);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  font-family: var(--font-editorial);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-editorial);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* iOS Liquid Glass Tokens */
+.ios-glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.36),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+}
+
+.ios-glass-pill {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.ios-glass-nav {
+  background: rgba(11, 11, 14, 0.78);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Android Material 3 Expressive Tokens */
+.m3-surface-container {
+  background-color: #19181F;
+  border-radius: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.m3-surface-container-high {
+  background-color: #24232C;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.m3-expressive-chip {
+  border-radius: 16px;
+  background-color: #2A2834;
+  color: #E2DFEC;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.m3-expressive-chip-active {
+  background-color: #D0BCFF;
+  color: #381E72;
+  font-weight: 600;
+}
+
+.m3-expressive-fab {
+  border-radius: 20px;
+  background: linear-gradient(135deg, #D0BCFF, #9A82DB);
+  color: #21005D;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile Safe Areas */
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 24px);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 24px);
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* RIPPLE ANIMATION SUITE */
+@keyframes celestial-ripple {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes cosmic-pulse-wave {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 24px rgba(212, 175, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+@keyframes touch-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.animate-celestial-ripple {
+  animation: celestial-ripple 3.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.animate-celestial-ripple-delayed-1 {
+  animation: celestial-ripple 3.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite 1.1s;
+}
+
+.animate-celestial-ripple-delayed-2 {
+  animation: celestial-ripple 3.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite 2.2s;
+}
+
+.animate-cosmic-wave {
+  animation: cosmic-pulse-wave 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.touch-ripple-effect {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: touch-ripple 0.65s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
 }

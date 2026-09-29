@@ -1,69 +1,184 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React, { useState, useEffect } from 'react';
+import ThePatternNav, { TabType } from '../components/ThePatternNav';
+import ThePatternHeader from '../components/ThePatternHeader';
+import FloatingActionStack from '../components/FloatingActionStack';
+import LensView from '../components/views/LensView';
+import DiscoverView from '../components/views/DiscoverView';
+import InDepthView from '../components/views/InDepthView';
+import BondsView from '../components/views/BondsView';
+import MeditationView from '../components/views/MeditationView';
+import YouProfileView from '../components/views/YouProfileView';
+import AiConsultationModal from '../components/AiConsultationModal';
+import SubscriptionPaywallModal from '../components/SubscriptionPaywallModal';
+import GlobalRippleCanvas from '../components/GlobalRippleCanvas';
+import { PlatformStyle, getSystemPlatform } from '../lib/platformTheme';
+import { soundEngine } from '../lib/soundEngine';
+import { ReadingResult } from '../lib/geminiFortuneService';
+import { Language } from '../lib/translations';
+
+export default function ZuhreApp() {
+  const [activeTab, setActiveTab] = useState<TabType>('lens');
+  const [platform, setPlatform] = useState<PlatformStyle>('ios-liquid-glass');
+  const [language, setLanguage] = useState<Language>('tr');
+  const [isMuted, setIsMuted] = useState(false);
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [isPaywallOpen, setIsPaywallOpen] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [latestReading, setLatestReading] = useState<ReadingResult | null>(null);
+
+  // Auto-detect platform on mount
+  useEffect(() => {
+    const sys = getSystemPlatform();
+    setPlatform(sys);
+    soundEngine.init();
+  }, []);
+
+  const handleTogglePlatform = () => {
+    soundEngine.playCardFlip();
+    setPlatform((prev) =>
+      prev === 'ios-liquid-glass' ? 'android-m3-expressive' : 'ios-liquid-glass'
+    );
+  };
+
+  const handleToggleLanguage = () => {
+    soundEngine.playCardFlip();
+    setLanguage((prev) => (prev === 'tr' ? 'en' : 'tr'));
+  };
+
+  const handleToggleSound = () => {
+    soundEngine.init();
+    const muted = soundEngine.toggleMute();
+    setIsMuted(muted);
+    if (!muted) {
+      soundEngine.playCrystalChime(528);
+    }
+  };
+
+  const handleReadingGenerated = (reading: ReadingResult) => {
+    setLatestReading(reading);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div
+      className={`min-h-screen relative font-sans transition-colors ${
+        activeTab === 'discover'
+          ? 'bg-[#0A0A0D] text-white'
+          : activeTab === 'lens' || activeTab === 'meditation'
+          ? 'bg-[#F4F1EA] text-[#141317]'
+          : 'bg-white text-black'
+      }`}
+    >
+      {/* Global Interactive Tap Ripple Canvas */}
+      <GlobalRippleCanvas platform={platform} />
+      {/* Dynamic Top Header with Platform Switcher & Sound */}
+      <ThePatternHeader
+        platform={platform}
+        onTogglePlatform={handleTogglePlatform}
+        language={language}
+        onToggleLanguage={handleToggleLanguage}
+        isMuted={isMuted}
+        onToggleSound={handleToggleSound}
+        onOpenSubscription={() => setIsPaywallOpen(true)}
+        isSubscribed={isSubscribed}
+        isDark={activeTab === 'discover'}
+      />
+
+      {/* Main View Switcher matching The Pattern's Screens */}
+      <main className="w-full">
+        {activeTab === 'lens' && (
+          <LensView
+            platform={platform}
+            language={language}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+            onOpenInDepth={() => setActiveTab('indepth')}
+          />
+        )}
+
+        {activeTab === 'discover' && (
+          <DiscoverView
+            platform={platform}
+            language={language}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+            onOpenInDepth={() => setActiveTab('indepth')}
+          />
+        )}
+
+        {activeTab === 'indepth' && (
+          <InDepthView
+            platform={platform}
+            language={language}
+            onBack={() => setActiveTab('lens')}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+          />
+        )}
+
+        {activeTab === 'bonds' && (
+          <BondsView
+            platform={platform}
+            language={language}
+            onOpenSubscription={() => setIsPaywallOpen(true)}
+          />
+        )}
+
+        {activeTab === 'meditation' && (
+          <MeditationView
+            platform={platform}
+            language={language}
+            onOpenSubscription={() => setIsPaywallOpen(true)}
+          />
+        )}
+
+        {activeTab === 'you' && (
+          <YouProfileView
+            platform={platform}
+            language={language}
+            onOpenInDepth={() => setActiveTab('indepth')}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+            onOpenBonds={() => setActiveTab('bonds')}
+            onOpenMeditation={() => setActiveTab('meditation')}
+          />
+        )}
       </main>
+
+      {/* Floating Action Button Stack (Share, Transit Sync Badge, Search / Ask AI) */}
+      <FloatingActionStack
+        platform={platform}
+        language={language}
+        onOpenConsultation={() => setIsConsultationOpen(true)}
+        onOpenCycles={() => setActiveTab('you')}
+        cycleCount={activeTab === 'indepth' ? 9 : 7}
+      />
+
+      {/* The Pattern Persistent Bottom Navigation Bar */}
+      <ThePatternNav
+        activeTab={activeTab}
+        language={language}
+        onSelectTab={(tab) => {
+          soundEngine.playCardFlip();
+          setActiveTab(tab);
+        }}
+        platform={platform}
+      />
+
+      {/* Concept 1, 2, 3: AI Consultation & Tarot Oracle Modal */}
+      <AiConsultationModal
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+        platform={platform}
+        language={language}
+        onReadingGenerated={handleReadingGenerated}
+      />
+
+      {/* Subscription Paywall Modal (In-Depth Pass) */}
+      <SubscriptionPaywallModal
+        isOpen={isPaywallOpen}
+        onClose={() => setIsPaywallOpen(false)}
+        platform={platform}
+        language={language}
+        onSubscribeSuccess={() => setIsSubscribed(true)}
+      />
     </div>
   );
 }
