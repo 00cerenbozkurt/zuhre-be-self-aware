@@ -9,6 +9,10 @@
 > **"Kendini bilen, evrenin ve arketiplerin dilini çözer."**  
 > *The Pattern* ve *Co-Star* estetiğinden ilham alan, astrolojiden destek alan fakat odağında derin **Tarot Arketipleri**, **Ata Karması Çözümlemesi** ve **Bilinçdışı Gölge Çalışması** barındıran yeni nesil kişisel farkındalık web ve mobil uygulaması.
 
+<p align="center">
+  <img src="public/zuhre_launch_hero.jpg" alt="Zühre Launch Mockup" width="100%" />
+</p>
+
 ---
 
 ## 🌟 Öne Çıkan Modüller ve Özellikler
@@ -55,6 +59,10 @@
 - iOS Safari'de *"Ana Ekrana Ekle"* ve Android Chrome'da *"Uygulamayı Yükle"* desteği.
 - Standalone modda adres çubuğu olmadan saf native uygulama hissi.
 - Özel tasarlanmış 512px SVG Zühre yıldızı uygulama ikonu.
+
+<p align="center">
+  <img src="public/zuhre_launch_duo.jpg" alt="Zühre Keşfet ve Bağlar Duo Showcase" width="100%" />
+</p>
 
 ---
 
