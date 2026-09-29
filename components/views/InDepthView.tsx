@@ -52,7 +52,7 @@ export default function InDepthView({
   };
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col justify-between pt-16 pb-32 transition-colors">
+    <div className="min-h-screen bg-white text-black flex flex-col justify-between pt-20 pb-32 transition-colors">
       {/* Upper White Header Section */}
       <div className="px-6 pt-3 pb-6 max-w-sm mx-auto w-full space-y-4">
         {/* Top Bar: Back Button & Dominant Sign Pill */}

@@ -280,7 +280,7 @@ export default function AiConsultationModal({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-[#F4F1EA] text-[#141317] flex flex-col justify-between transition-colors">
       {/* Sticky Top Header with Pattern Styling */}
-      <header className="sticky top-0 z-30 px-6 py-3.5 flex items-center justify-between bg-[#F4F1EA]/90 backdrop-blur-md border-b border-black/5">
+      <header className="sticky top-0 z-30 px-6 pt-11 pb-3 flex items-center justify-between bg-[#F4F1EA]/90 backdrop-blur-md border-b border-black/5">
         {/* Left Action: Back or Close */}
         {step > 1 ? (
           <button

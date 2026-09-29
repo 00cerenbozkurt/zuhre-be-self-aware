@@ -111,7 +111,7 @@ export default function YouProfileView({
   };
 
   return (
-    <div className="min-h-screen bg-white text-black px-4 sm:px-6 pt-18 pb-36 transition-colors">
+    <div className="min-h-screen bg-white text-black px-4 sm:px-6 pt-20 pb-36 transition-colors">
       <div className="max-w-sm mx-auto space-y-5">
         
         {/* Profile Card Header with Customizable Aura */}

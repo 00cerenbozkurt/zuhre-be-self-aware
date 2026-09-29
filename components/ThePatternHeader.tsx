@@ -43,7 +43,7 @@ export default function ThePatternHeader({
       : (t?.androidPlatform ?? 'Android M3');
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-30 pt-safe px-4 py-2.5 transition-all">
+    <header className="fixed top-0 left-0 right-0 z-30 pt-10 md:pt-11 px-4 pb-2 transition-all">
       <div className="max-w-md mx-auto flex items-center justify-between text-xs">
         {/* Left: Platform Toggle Pill */}
         <button
