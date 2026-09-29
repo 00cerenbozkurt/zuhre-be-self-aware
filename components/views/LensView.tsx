@@ -9,7 +9,7 @@ import { PlatformStyle, getAdaptiveClasses } from '../../lib/platformTheme';
 
 import RippleButton from '../RippleButton';
 
-import { Language, TRANSLATIONS } from '../../lib/translations';
+import { Language, getTranslations } from '../../lib/translations';
 
 interface LensViewProps {
   platform: PlatformStyle;
@@ -20,12 +20,12 @@ interface LensViewProps {
 
 export default function LensView({
   platform,
-  language = 'tr',
+  language,
   onOpenConsultation,
   onOpenInDepth,
 }: LensViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
   const [dailyCard, setDailyCard] = useState<typeof tarotDeck[0] | null>(null);
   const [isFlipped, setIsFlipped] = useState(false);
   const [rippleBurst, setRippleBurst] = useState(false);
@@ -67,9 +67,9 @@ export default function LensView({
         <div className="flex flex-col items-center space-y-2 relative">
           <div className="relative flex items-center justify-center">
             {/* Concentric Ambient Ripples */}
-            <div className="absolute w-14 h-14 rounded-full border-2 border-amber-500/50 animate-celestial-ripple pointer-events-none shadow-[0_0_12px_rgba(245,158,11,0.3)]" />
-            <div className="absolute w-14 h-14 rounded-full border-2 border-orange-500/40 animate-celestial-ripple-delayed-1 pointer-events-none shadow-[0_0_12px_rgba(249,115,22,0.25)]" />
-            <div className="absolute w-14 h-14 rounded-full border-2 border-indigo-500/35 animate-celestial-ripple-delayed-2 pointer-events-none shadow-[0_0_12px_rgba(99,102,241,0.25)]" />
+            <div className="absolute w-14 h-14 rounded-full border border-amber-500/30 animate-celestial-ripple pointer-events-none" />
+            <div className="absolute w-14 h-14 rounded-full border border-amber-600/20 animate-celestial-ripple-delayed-1 pointer-events-none" />
+            <div className="absolute w-14 h-14 rounded-full border border-indigo-500/15 animate-celestial-ripple-delayed-2 pointer-events-none" />
             
             {/* Core Circle */}
             <div className="w-14 h-14 rounded-full overflow-hidden shadow-sm border border-black/5 bg-gradient-to-b from-amber-400 via-orange-300 to-indigo-900 flex items-center justify-center relative z-10">

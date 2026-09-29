@@ -3,12 +3,12 @@
 import React from 'react';
 import { Volume2, VolumeX, Sparkles, Smartphone, Globe } from 'lucide-react';
 import { PlatformStyle } from '../lib/platformTheme';
-import { Language, TRANSLATIONS } from '../lib/translations';
+import { Language, getTranslations } from '../lib/translations';
 
 interface ThePatternHeaderProps {
   platform: PlatformStyle;
   onTogglePlatform: () => void;
-  language: Language;
+  language?: Language;
   onToggleLanguage: () => void;
   isMuted: boolean;
   onToggleSound: () => void;
@@ -28,7 +28,7 @@ export default function ThePatternHeader({
   isSubscribed = false,
   isDark = false,
 }: ThePatternHeaderProps) {
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
 
   // Dynamic styling based on light vs dark view (defaults to black on light/ivory background)
   const pillClass = isDark
@@ -36,6 +36,11 @@ export default function ThePatternHeader({
     : 'bg-black/5 hover:bg-black/10 backdrop-blur-md border border-black/15 text-black font-semibold shadow-xs';
 
   const iconColor = isDark ? 'text-white' : 'text-black';
+
+  const platformLabel =
+    platform === 'ios-liquid-glass'
+      ? (t?.iosPlatform ?? 'iOS Likit Cam')
+      : (t?.androidPlatform ?? 'Android M3');
 
   return (
     <header className="fixed top-0 left-0 right-0 z-30 pt-safe px-4 py-2.5 transition-all">
@@ -48,7 +53,7 @@ export default function ThePatternHeader({
         >
           <Smartphone size={13} className={iconColor} />
           <span className={isDark ? 'text-white/90' : 'text-black font-semibold'}>
-            {platform === 'ios-liquid-glass' ? t.iosPlatform : t.androidPlatform}
+            {platformLabel}
           </span>
         </button>
 

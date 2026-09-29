@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import ThePatternNav, { TabType } from '../components/ThePatternNav';
 import ThePatternHeader from '../components/ThePatternHeader';
 import FloatingActionStack from '../components/FloatingActionStack';
@@ -88,70 +87,59 @@ export default function ZuhreApp() {
 
       {/* Main View Switcher matching The Pattern's Screens */}
       <main className="w-full">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="w-full"
-          >
-            {activeTab === 'lens' && (
-              <LensView
-                platform={platform}
-                language={language}
-                onOpenConsultation={() => setIsConsultationOpen(true)}
-                onOpenInDepth={() => setActiveTab('indepth')}
-              />
-            )}
+        {activeTab === 'lens' && (
+          <LensView
+            platform={platform}
+            language={language}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+            onOpenInDepth={() => setActiveTab('indepth')}
+          />
+        )}
 
-            {activeTab === 'discover' && (
-              <DiscoverView
-                platform={platform}
-                language={language}
-                onOpenConsultation={() => setIsConsultationOpen(true)}
-                onOpenInDepth={() => setActiveTab('indepth')}
-              />
-            )}
+        {activeTab === 'discover' && (
+          <DiscoverView
+            platform={platform}
+            language={language}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+            onOpenInDepth={() => setActiveTab('indepth')}
+          />
+        )}
 
-            {activeTab === 'indepth' && (
-              <InDepthView
-                platform={platform}
-                language={language}
-                onBack={() => setActiveTab('lens')}
-                onOpenConsultation={() => setIsConsultationOpen(true)}
-              />
-            )}
+        {activeTab === 'indepth' && (
+          <InDepthView
+            platform={platform}
+            language={language}
+            onBack={() => setActiveTab('lens')}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+          />
+        )}
 
-            {activeTab === 'bonds' && (
-              <BondsView
-                platform={platform}
-                language={language}
-                onOpenSubscription={() => setIsPaywallOpen(true)}
-              />
-            )}
+        {activeTab === 'bonds' && (
+          <BondsView
+            platform={platform}
+            language={language}
+            onOpenSubscription={() => setIsPaywallOpen(true)}
+          />
+        )}
 
-            {activeTab === 'meditation' && (
-              <MeditationView
-                platform={platform}
-                language={language}
-                onOpenSubscription={() => setIsPaywallOpen(true)}
-              />
-            )}
+        {activeTab === 'meditation' && (
+          <MeditationView
+            platform={platform}
+            language={language}
+            onOpenSubscription={() => setIsPaywallOpen(true)}
+          />
+        )}
 
-            {activeTab === 'you' && (
-              <YouProfileView
-                platform={platform}
-                language={language}
-                onOpenInDepth={() => setActiveTab('indepth')}
-                onOpenConsultation={() => setIsConsultationOpen(true)}
-                onOpenBonds={() => setActiveTab('bonds')}
-                onOpenMeditation={() => setActiveTab('meditation')}
-              />
-            )}
-          </motion.div>
-        </AnimatePresence>
+        {activeTab === 'you' && (
+          <YouProfileView
+            platform={platform}
+            language={language}
+            onOpenInDepth={() => setActiveTab('indepth')}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+            onOpenBonds={() => setActiveTab('bonds')}
+            onOpenMeditation={() => setActiveTab('meditation')}
+          />
+        )}
       </main>
 
       {/* Floating Action Button Stack (Share, Transit Sync Badge, Search / Ask AI) */}

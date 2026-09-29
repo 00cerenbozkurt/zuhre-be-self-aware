@@ -5,7 +5,7 @@ import { ArrowLeft, Play, Square, Bookmark, BookmarkCheck, Sparkles } from 'luci
 import { PlatformStyle, getAdaptiveClasses } from '../../lib/platformTheme';
 import RippleButton from '../RippleButton';
 
-import { Language, TRANSLATIONS } from '../../lib/translations';
+import { Language, getTranslations } from '../../lib/translations';
 
 interface InDepthViewProps {
   platform: PlatformStyle;
@@ -16,12 +16,12 @@ interface InDepthViewProps {
 
 export default function InDepthView({
   platform,
-  language = 'tr',
+  language,
   onBack,
   onOpenConsultation,
 }: InDepthViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 

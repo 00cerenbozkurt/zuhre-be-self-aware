@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import { PlatformStyle, getAdaptiveClasses } from '../../lib/platformTheme';
 import { soundEngine } from '../../lib/soundEngine';
-import { TRANSLATIONS, Language } from '../../lib/translations';
+import { getTranslations, Language } from '../../lib/translations';
 import { ZODIAC_KARMA_PROFILES, ZodiacKarmaProfile, BreathingStep } from '../../lib/zodiacKarmaData';
 import RippleButton from '../RippleButton';
 
@@ -38,7 +38,7 @@ export default function MeditationView({
   onOpenSubscription,
 }: MeditationViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
 
   // Selected Zodiac Sign (Default: Terazi / Libra)
   const [selectedZodiacId, setSelectedZodiacId] = useState('libra');

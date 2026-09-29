@@ -327,3 +327,11 @@ export const TRANSLATIONS = {
     ]
   }
 };
+
+export function getTranslations(lang?: string | null): typeof TRANSLATIONS['tr'] {
+  if (lang && lang === 'en') {
+    return TRANSLATIONS.en;
+  }
+  return TRANSLATIONS.tr;
+}
+

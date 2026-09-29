@@ -5,7 +5,7 @@ import { Users, ChevronRight, Sparkles } from 'lucide-react';
 import { PlatformStyle, getAdaptiveClasses } from '../../lib/platformTheme';
 import RippleButton from '../RippleButton';
 
-import { Language, TRANSLATIONS } from '../../lib/translations';
+import { Language, getTranslations } from '../../lib/translations';
 
 interface DiscoverViewProps {
   platform: PlatformStyle;
@@ -16,12 +16,12 @@ interface DiscoverViewProps {
 
 export default function DiscoverView({
   platform,
-  language = 'tr',
+  language,
   onOpenConsultation,
   onOpenInDepth,
 }: DiscoverViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
 
   return (
     <div className="relative min-h-screen bg-[#0A0A0D] text-white flex flex-col justify-between px-6 pt-24 pb-32 overflow-hidden">

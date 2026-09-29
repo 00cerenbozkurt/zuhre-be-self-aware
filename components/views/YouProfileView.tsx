@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Bell, MoreHorizontal, ChevronUp, ChevronDown, X, Play, ChevronRight, Disc, Sparkles } from 'lucide-react';
 import { PlatformStyle, getAdaptiveClasses } from '../../lib/platformTheme';
-import { TRANSLATIONS, Language } from '../../lib/translations';
+import { getTranslations, Language } from '../../lib/translations';
 
 import RippleButton from '../RippleButton';
 
@@ -23,7 +23,7 @@ export default function YouProfileView({
   language = 'tr',
 }: YouProfileViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
   const [isCardExpanded, setIsCardExpanded] = useState(true);
   const [isCardDismissed, setIsCardDismissed] = useState(false);
 
@@ -35,7 +35,7 @@ export default function YouProfileView({
           {/* Avatar & Handle with Ripple Aura */}
           <div className="flex items-center gap-3">
             <div className="relative flex items-center justify-center">
-              <div className="absolute w-12 h-12 rounded-full border-2 border-amber-500/50 animate-celestial-ripple pointer-events-none shadow-[0_0_12px_rgba(245,158,11,0.3)]" />
+              <div className="absolute w-12 h-12 rounded-full border border-amber-500/25 animate-celestial-ripple pointer-events-none" />
               <div className="w-12 h-12 rounded-full overflow-hidden border border-black/10 shadow-sm bg-gradient-to-b from-amber-400 via-orange-300 to-indigo-900 flex items-center justify-center relative z-10">
                 <div className="w-full h-[1px] bg-white/40 mt-2" />
               </div>

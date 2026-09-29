@@ -24,7 +24,7 @@ import tarotDeck from '../app/data/tarotDeck.json';
 import { soundEngine } from '../lib/soundEngine';
 import { PlatformStyle, getAdaptiveClasses } from '../lib/platformTheme';
 import { fetchGeminiReading, ReadingResult } from '../lib/geminiFortuneService';
-import { TRANSLATIONS, Language } from '../lib/translations';
+import { getTranslations, Language } from '../lib/translations';
 import RippleButton from './RippleButton';
 
 const DEFAULT_TAKEAWAYS_TR = [
@@ -95,7 +95,7 @@ export default function AiConsultationModal({
   language = 'tr',
 }: AiConsultationModalProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
   const zodiacList = language === 'tr' ? ZODIAC_SIGNS_TR : ZODIAC_SIGNS_EN;
 
   // Step 1: Talk to AI (Inquiry)

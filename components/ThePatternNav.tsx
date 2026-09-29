@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { PlatformStyle } from '../lib/platformTheme';
-import { Language, TRANSLATIONS } from '../lib/translations';
+import { Language, getTranslations } from '../lib/translations';
 
 export type TabType = 'lens' | 'discover' | 'indepth' | 'bonds' | 'meditation' | 'you';
 
@@ -17,9 +17,9 @@ export default function ThePatternNav({
   activeTab,
   onSelectTab,
   platform,
-  language = 'tr',
+  language,
 }: ThePatternNavProps) {
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
 
   const tabs: { id: TabType; label: string }[] = [
     { id: 'lens', label: t.navLens },

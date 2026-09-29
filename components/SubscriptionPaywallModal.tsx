@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { X, Check, Sparkles, ShieldCheck, HeartHandshake, Headphones, Orbit } from 'lucide-react';
 import { PlatformStyle, getAdaptiveClasses } from '../lib/platformTheme';
 import { soundEngine } from '../lib/soundEngine';
-import { TRANSLATIONS, Language } from '../lib/translations';
+import { getTranslations, Language } from '../lib/translations';
 
 interface SubscriptionPaywallModalProps {
   isOpen: boolean;
@@ -23,7 +23,7 @@ export default function SubscriptionPaywallModal({
   language = 'tr',
 }: SubscriptionPaywallModalProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
+  const t = getTranslations(language);
   const [selectedPlan, setSelectedPlan] = useState<'annual' | 'monthly'>('annual');
   const [isProcessing, setIsProcessing] = useState(false);
 

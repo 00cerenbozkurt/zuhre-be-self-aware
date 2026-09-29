@@ -133,21 +133,38 @@ ${cardDescriptions}
 JSON çıktısını üret.
 `;
 
-        const response = await ai.models.generateContent({
-          model: modelName,
-          contents: userPrompt,
-          config: {
-            systemInstruction,
-            responseMimeType: 'application/json',
-            temperature: 0.75
-          }
-        });
+        // Model Cascade Fallback: If primary model has 503 high demand, try stable flash models
+        const candidateModels = Array.from(new Set([
+          modelName,
+          'gemini-2.5-flash',
+          'gemini-2.0-flash',
+          'gemini-1.5-flash',
+        ]));
 
-        const rawText = response.text || '';
-        const parsed = JSON.parse(rawText);
-        return NextResponse.json({ success: true, reading: parsed, provider: 'gemini', model: modelName });
+        let lastError: any = null;
+        for (const candidate of candidateModels) {
+          try {
+            const response = await ai.models.generateContent({
+              model: candidate,
+              contents: userPrompt,
+              config: {
+                systemInstruction,
+                responseMimeType: 'application/json',
+                temperature: 0.75
+              }
+            });
+
+            const rawText = response.text || '';
+            const parsed = JSON.parse(rawText);
+            return NextResponse.json({ success: true, reading: parsed, provider: 'gemini', model: candidate });
+          } catch (modelErr: any) {
+            lastError = modelErr;
+            console.warn(`Gemini model ${candidate} unavailable or busy (${modelErr?.message || modelErr}), attempting next model...`);
+          }
+        }
+        console.warn('All candidate models busy, using high-fidelity synthesized fallback:', lastError?.message);
       } catch (geminiError: any) {
-        console.warn('Gemini API call error, using synthesized fallback:', geminiError?.message);
+        console.warn('Gemini API setup error, using synthesized fallback:', geminiError?.message);
       }
     }
 
