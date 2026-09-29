@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ✦ Zühre (زهرة) • Cosmic Patterns & Tarot Intelligence
 
-## Getting Started
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F00cerenbozkurt%2Fzuhre-self-awareness-app&env=GEMINI_API_KEY&envDescription=Google%20AI%20Studio%20Gemini%20API%20Key)
+[![Next.js](https://img.shields.io/badge/Next.js-16.3.6-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0.0-blue?style=flat&logo=react)](https://react.dev/)
+[![Gemini AI](https://img.shields.io/badge/Google%20Gemini-3.5%20Flash%20Lite-orange?style=flat&logo=google)](https://ai.google.dev/)
+[![PWA Ready](https://img.shields.io/badge/PWA-Ready-emerald?style=flat&logo=pwa)](https://web.dev/progressive-web-apps/)
 
-First, run the development server:
+> **"Kendini bilen, evrenin ve arketiplerin dilini çözer."**  
+> *The Pattern* ve *Co-Star* estetiğinden ilham alan, astrolojiden destek alan fakat odağında derin **Tarot Arketipleri**, **Ata Karması Çözümlemesi** ve **Bilinçdışı Gölge Çalışması** barındıran yeni nesil kişisel farkındalık web ve mobil uygulaması.
+
+---
+
+## 🌟 Öne Çıkan Modüller ve Özellikler
+
+### 1. 👁️ Odak Lens (Daily Lens)
+- **Günün Tarot Hizalanması:** Her gün desteden çekilen bir tarot kartı ile kullanıcının seçtiği baskın burcun sentezi.
+- **Kozmik Halka & Ses Manzarası:** Doğa sesleri, 528 Hz kristal frekansları ve sakin sesli içgörüler.
+- **Dinamik Arketipsel Yorum:** Yüzeysel burç falları yerine psikolojik, eylemsel ve ruhsal rehberlik.
+
+### 2. 📜 Keşfet (Discover & Esoteric History)
+- **Tarotun Derin Tarihi:** 15. yy Visconti-Sforza, 17. yy Marsilya, 1909 Rider-Waite Smith ve Carl G. Jung Analitik Psikolojisi dönemleri.
+- **Etkileşimli Akordeon:** Bloklara tıklandığında dönemin felsefi arka planı, ezoterik inovasyonları ve figürleri detaylı hikayelerle genişler.
+- **Tüm 22 Büyük Arkana Kartı:** 0'dan (Deli) 21'e (Dünya) kadar her kartın simgesel şifresi, İbrani harfi, astrolojik bağı ve Jungian gölge analizi.
+
+### 3. 🔍 Derin Bakış (In-Depth Self-Awareness)
+- Çekilen kart ve burcun birleşimiyle **Gölge Yan / Bilinçdışı Tuzak**, **Bilinçli Eylem Adımı** ve **Günün Günlük Sorusu**.
+- Yerleşik sesli rehber ile derin içgörüyü dinleme imkanı.
+
+### 4. 🔗 Bağlar & Uyum (Bonds & Karmic Connections)
+- **Çift Yönlü Astro-Tarot Sentezi:** Hem kullanıcı hem de partner için hem **Burç** (ve element) hem de özel **Tarot Kartı** seçimi.
+- Romantik, Dostluk, Karmik ve Aile bağ dinamiklerinin Gemini 3.5 yapay zekası ile sentezlenmesi.
+- Hazır profiller (Alex, Maya, Deniz, Can) ve hızlı kart karıştırma.
+
+### 5. 🧘 Meditasyon (Ata Karması & 3 Adımlı Nefes)
+- Burca ve tarot arketipine özel atasal yük ve karmik kordon tespiti.
+- **3 Aşamalı Nefes Navigasyonu:**
+  - 1. Döngü: Ata Köklerini Tanıma & Kabul
+  - 2. Döngü: Karmik Bağı İdrak Etme & Dönüştürme
+  - 3. Döngü: Kordon Kesimi & Özgürleşme
+- Saf görsel nefes rehberi ve Tibet kasesi / gong akustik sesleri (sesli yönlendirme olmadan duru odaklanma).
+
+### 6. 👤 Sen (Kişiselleştirilmiş Profil)
+- **Derin Özelleştirme:** İsim, kullanıcı adı (@zuhre.soul), Baskın (Güneş) Burç, Yükselen Burç, Ay Burcu.
+- **Ruh Tarot Kartı Arketipleri:** 22 kart arasından ruhunu temsil eden kartı atama.
+- **Kişisel Niyet / Biyo:** Öz farkındalık manifestosu.
+- **5 Kozmik Aura Teması:** Kozmik Altın, Ametist Moru, Zümrüt Yeşili, Safir Mavisi, Obsidyen Gece.
+
+### 7. 🔮 Yapay Zeka Kozmik Danışmanlık (Gemini 3.5 Oracle)
+- 3 kartlı lüks tarot açılımı ve soru sorma alanı.
+- **Dinamik Arketipsel Şema Havuzu:** Her açılışta 16 soruluk Jungian gölge havuzundan rastgele 4 yeni soru ve `🎲 Yenile` butonu.
+- Özet ve tam içgörü raporları, tek tıkla panoya kopyalama.
+
+### 8. 📱 PWA & Mobil Tam Ekran Deneyimi
+- iOS Safari'de *"Ana Ekrana Ekle"* ve Android Chrome'da *"Uygulamayı Yükle"* desteği.
+- Standalone modda adres çubuğu olmadan saf native uygulama hissi.
+- Özel tasarlanmış 512px SVG Zühre yıldızı uygulama ikonu.
+
+---
+
+## 🛠️ Teknoloji Yığını
+
+- **Framework:** [Next.js 16 (App Router & Turbopack)](https://nextjs.org/)
+- **Kütüphaneler:** React 19, Framer Motion, Lucide React, Canvas Confetti
+- **Yapay Zeka:** Google Gemini 3.5 Flash Lite (AI Studio API)
+- **Ses Sentezi & Efektler:** Web Audio API (Prosedürel kristal çanlar, Tibet kaseleri, rüzgar çanları ve Lofi atmosfer akışı)
+- **Stil & Tasarım:** Tailwind CSS, Glassmorphism, The Pattern estetiği, adaptif iOS Liquid Glass & Android Material You temaları
+
+---
+
+## 🚀 Canlıya Dağıtım (Deploy)
+
+### 1. Vercel ile Tek Tıkla Dağıtım (Önerilen)
+En hızlı ve otomatik yöntem Vercel'dir:
+
+1. [Vercel Dağıtım Bağlantısına Tıklayın](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F00cerenbozkurt%2Fzuhre-self-awareness-app&env=GEMINI_API_KEY&envDescription=Google%20AI%20Studio%20Gemini%20API%20Key).
+2. GitHub hesabınızla giriş yapıp repoyu bağlayın.
+3. `GEMINI_API_KEY` alanına Google AI Studio API anahtarınızı girin.
+4. **Deploy** butonuna basın; 45 saniye içinde canlı URL'niz (`https://zuhre.vercel.app`) hazır olacaktır.
+
+### 2. Yerel Kurulum (Local Development)
 
 ```bash
+# Repoyu klonlayın
+git clone https://github.com/00cerenbozkurt/zuhre-self-awareness-app.git
+cd zuhre-self-awareness-app
+
+# Bağımlılıkları yükleyin
+npm install
+
+# .env.local dosyanızı oluşturun
+echo "GEMINI_API_KEY=your_api_key_here" > .env.local
+
+# Geliştirme sunucusunu başlatın
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tarayıcınızda `http://localhost:3000` adresini açarak uygulamayı deneyimleyebilirsiniz.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📜 Lisans
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Bu proje kişisel farkındalık ve ezoterik psikoloji çalışmaları amacıyla geliştirilmiştir. Tüm hakları saklıdır.
