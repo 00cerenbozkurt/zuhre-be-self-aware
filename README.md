@@ -73,9 +73,9 @@
 ### 📱 Mobil Arayüz Önizlemeleri (iPhone 18 Pro Max)
 
 <p align="center">
-  <img src="public/zuhre_iphone18_derin_bakis.jpg" alt="Zühre Derin Bakış" width="48%" />
-  &nbsp;
-  <img src="public/zuhre_iphone18_meditasyon_ata_karmasi.jpg" alt="Zühre Ata Karması ve 3 Adımlı Nefes" width="48%" />
+  <img src="public/zuhre_iphone18_derin_bakis.jpg" alt="Zühre Derin Bakış" width="32%" />
+  <img src="public/zuhre_iphone18_meditasyon_ata_karmasi.jpg" alt="Zühre Ata Karması ve 3 Adımlı Nefes" width="32%" />
+  <img src="public/zuhre_iphone18_kehanet_oracle.jpg" alt="Zühre Kozmik Kehanet ve Yapay Zeka Danışmanlık" width="32%" />
 </p>
 
 ---
