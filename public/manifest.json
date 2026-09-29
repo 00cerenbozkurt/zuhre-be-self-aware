@@ -1,0 +1,19 @@
+{
+  "name": "Zühre • Cosmic Patterns & Tarot Intelligence",
+  "short_name": "Zühre",
+  "description": "AI-powered astrological patterns, tarot intelligence, and relationship bonds.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0B0E",
+  "theme_color": "#F4F1EA",
+  "orientation": "portrait",
+  "categories": ["lifestyle", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

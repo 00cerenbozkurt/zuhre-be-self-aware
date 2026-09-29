@@ -5,6 +5,16 @@ export const metadata: Metadata = {
   title: "Zühre • Cosmic Patterns & Tarot Intelligence",
   description:
     "AI-powered astrological patterns, tarot intelligence, and relationship bonds inspired by The Pattern.",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Zühre",
+  },
 };
 
 export const viewport: Viewport = {
@@ -13,6 +23,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: "cover",
+  themeColor: "#F4F1EA",
 };
 
 export default function RootLayout({

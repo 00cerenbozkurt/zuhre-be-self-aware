@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1F1A2C"/>
+      <stop offset="100%" stop-color="#09080D"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="60%" stop-color="#EA580C"/>
+      <stop offset="100%" stop-color="#431407"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGlow)"/>
+
+  <!-- Celestial Concentric Rings -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#FDE047" stroke-width="1.5" stroke-opacity="0.2" stroke-dasharray="6 6"/>
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#FDE047" stroke-width="1" stroke-opacity="0.3"/>
+  <circle cx="256" cy="256" r="90" fill="none" stroke="#FDE047" stroke-width="2" stroke-opacity="0.4"/>
+
+  <!-- Sunset Sky Vignette Core -->
+  <circle cx="256" cy="256" r="64" fill="url(#sunGrad)" filter="url(#glow)"/>
+
+  <!-- Eight-Pointed Zühre (Venus) Star -->
+  <g fill="url(#goldGrad)" filter="url(#glow)">
+    <!-- Vertical and Horizontal Rays -->
+    <path d="M256 70 L266 220 L416 230 L280 256 L416 282 L266 292 L256 442 L246 292 L96 282 L232 256 L96 230 L246 220 Z"/>
+    <!-- Diagonal Subtle Rays -->
+    <path d="M256 120 L264 235 L375 145 L272 248 L375 367 L264 277 L256 392 L248 277 L137 367 L240 248 L137 145 L248 235 Z" opacity="0.6"/>
+  </g>
+
+  <!-- Center Diamond Spark -->
+  <circle cx="256" cy="256" r="14" fill="#FFFFFF"/>
+</svg>
