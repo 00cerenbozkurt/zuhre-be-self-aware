@@ -1,6 +1,8 @@
 # ✦ Zühre (زهرة) • Cosmic Patterns & Tarot Intelligence
 
+[![Live Demo](https://img.shields.io/badge/🌐_Canlı_Uygulama-zuhre--be--self--aware.vercel.app-7928CA?style=for-the-badge&logo=vercel)](https://zuhre-be-self-aware.vercel.app)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F00cerenbozkurt%2Fzuhre-self-awareness-app&env=GEMINI_API_KEY&envDescription=Google%20AI%20Studio%20Gemini%20API%20Key)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16.3.6-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.0.0-blue?style=flat&logo=react)](https://react.dev/)
 [![Gemini AI](https://img.shields.io/badge/Google%20Gemini-3.5%20Flash%20Lite-orange?style=flat&logo=google)](https://ai.google.dev/)
@@ -10,8 +12,12 @@
 > *The Pattern* ve *Co-Star* estetiğinden ilham alan, astrolojiden destek alan fakat odağında derin **Tarot Arketipleri**, **Ata Karması Çözümlemesi** ve **Bilinçdışı Gölge Çalışması** barındıran yeni nesil kişisel farkındalık web ve mobil uygulaması.
 
 <p align="center">
-  <img src="public/zuhre_launch_hero.jpg" alt="Zühre Launch Mockup" width="100%" />
+  <a href="https://zuhre-be-self-aware.vercel.app" target="_blank">
+    <img src="public/zuhre_launch_hero.jpg" alt="Zühre Launch Mockup" width="100%" />
+  </a>
 </p>
+
+> 🌐 **Canlı Deneyimleyin:** [https://zuhre-be-self-aware.vercel.app](https://zuhre-be-self-aware.vercel.app)
 
 ---
 

@@ -1,6 +1,14 @@
 {
   "name": "zuhre",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "AI-powered psychological tarot patterns, ancestral karma resolution, and relationship bonds.",
+  "author": "Ceren Bozkurt",
+  "license": "MIT",
+  "homepage": "https://zuhre-be-self-aware.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/00cerenbozkurt/zuhre-self-awareness-app.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
