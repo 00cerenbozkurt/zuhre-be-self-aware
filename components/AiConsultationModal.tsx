@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
@@ -87,6 +87,50 @@ const TAROT_NAMES_TR: Record<string, string> = {
 
 const ROMAN_NUMERALS = ['I', 'II', 'III'];
 
+export const ARCHETYPAL_POOL_TR = [
+  "Şu an ilişkilerimdeki gizli gölge ve karmik ayna ne söylüyor?",
+  "Kariyerim ve otoritem konusunda bir kavşaktayım. Yeni döngüm nedir?",
+  "Bu mevsim benim için hangi ruhsal ders zirveye ulaşıyor?",
+  "Savunmasız kalmaktan korkmadan kontrolü nasıl serbest bırakabilirim?",
+  "Bilinçdışımda bastırdığım 'Gölge Benlik' bugün benden ne talep ediyor?",
+  "Ata soyumdan devraldığım hangi duygusal borcu artık tamamlamalıyım?",
+  "İçimdeki 'Anima / Animus' dengesi şu anki partner seçimlerimi nasıl etkiliyor?",
+  "Ruhsal olarak bir krizde miyim, yoksa bir uyanış eşiğinde miyim?",
+  "Hangi korkum bana kendimi koruma kılığına girmiş bir engel gibi davranıyor?",
+  "Maddi ve dünyevi konularda bolluk akışımı tıkayan kök inanç nedir?",
+  "Bugün kalbimin en derin köşesindeki yarayı şifalandırmak için neye ihtiyacım var?",
+  "Hayatımdaki tekrar eden döngü bana hangi farkındalığı öğretmeye çalışıyor?",
+  "Beni tüketen bir bağı sevgiyle ve suçluluk duymadan nasıl özgürleştirebilirim?",
+  "İçsel rehberim ve sezgilerim bana şu an hangi adımı atmamı fısıldıyor?",
+  "Kendi gücümü başkalarına teslim ettiğim alanlar hangileri?",
+  "Zihinsel kaosun altında yatan gerçek ruhsal arzum nedir?"
+];
+
+export const ARCHETYPAL_POOL_EN = [
+  "What is the hidden shadow and karmic mirror in my relationships right now?",
+  "I feel at a crossroads in my career and authority. What is my next cycle?",
+  "What spiritual lesson is peaking for me this season?",
+  "How can I surrender control without feeling vulnerable?",
+  "What demands is my repressed 'Shadow Self' making on me today?",
+  "Which ancestral emotional burden am I ready to resolve and release?",
+  "How is my inner Anima / Animus dynamic shaping my current connections?",
+  "Am I going through a spiritual crisis or the threshold of an awakening?",
+  "Which fear is masquerading as self-protection while blocking my path?",
+  "What core belief is currently restricting my earthly abundance and flow?",
+  "What does the deepest wound in my heart need today to begin healing?",
+  "What pattern or recurring cycle is trying to bring me into awareness?",
+  "How can I untie an exhausting cord with love and without guilt?",
+  "What step is my quiet intuitive voice whispering to me right now?",
+  "In what areas of my life am I unconsciously handing my power away?",
+  "What true soul desire lies beneath my mental chaos and overthinking?"
+];
+
+export function getRandomArchetypes(lang: Language, count = 4): string[] {
+  const pool = lang === 'tr' ? ARCHETYPAL_POOL_TR : ARCHETYPAL_POOL_EN;
+  const shuffled = [...pool].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
 export default function AiConsultationModal({
   isOpen,
   onClose,
@@ -112,6 +156,13 @@ export default function AiConsultationModal({
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [activeInsightMode, setActiveInsightMode] = useState<'summary' | 'full'>('summary');
   const [isSummaryCopied, setIsSummaryCopied] = useState(false);
+  const [activePresets, setActivePresets] = useState<string[]>(() => getRandomArchetypes(language, 4));
+
+  useEffect(() => {
+    if (isOpen) {
+      setActivePresets(getRandomArchetypes(language, 4));
+    }
+  }, [isOpen, language]);
 
   const handleCopySummary = async () => {
     if (!generatedReading) return;
@@ -324,13 +375,27 @@ export default function AiConsultationModal({
               />
             </div>
 
-            {/* Archetypal Theme Suggestions */}
+            {/* Archetypal Theme Suggestions - Dynamic Random Pool with Refresh */}
             <div className="space-y-2">
-              <span className="text-[10px] font-bold tracking-wider text-neutral-500 uppercase block px-1">
-                {t.archetypalTheme}
-              </span>
+              <div className="flex items-center justify-between px-1">
+                <span className="text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
+                  {t.archetypalTheme}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    soundEngine.playCardFlip();
+                    setActivePresets(getRandomArchetypes(language, 4));
+                  }}
+                  className="inline-flex items-center gap-1.5 text-[10px] font-bold text-neutral-700 hover:text-black transition-colors cursor-pointer active:scale-95 py-0.5 px-2 rounded-full bg-black/5 hover:bg-black/10"
+                  title={language === 'tr' ? 'Seçenekleri Yenile' : 'Refresh Options'}
+                >
+                  <RefreshCw size={11} className="text-neutral-600" />
+                  <span>{language === 'tr' ? 'Yenile' : 'Refresh'}</span>
+                </button>
+              </div>
               <div className="space-y-2">
-                {t.presetTopics.map((topic, i) => (
+                {activePresets.map((topic, i) => (
                   <button
                     key={i}
                     onClick={() => {

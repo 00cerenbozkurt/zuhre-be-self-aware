@@ -11,7 +11,6 @@ import {
   ZODIAC_SIGNS,
   getZodiacSign,
   synthesizeDailyTarot,
-  getDynamicTarotTransits,
 } from '../../lib/tarotZodiacSynthesis';
 import RippleButton from '../RippleButton';
 
@@ -65,11 +64,6 @@ export default function LensView({
   const synthesis = activeCard
     ? synthesizeDailyTarot(dominantSign, activeCard, language)
     : null;
-
-  // Dynamic transits linked to drawn card
-  const dynamicTransits = activeCard
-    ? getDynamicTarotTransits(dominantSign, activeCard, language)
-    : [];
 
   const handlePullDailyCard = () => {
     soundEngine.playCardFlip();

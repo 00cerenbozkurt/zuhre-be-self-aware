@@ -62,16 +62,9 @@ export default function MeditationView({
   const [currentCycle, setCurrentCycle] = useState<number>(1); // 1, 2, 3
   const [isActive, setIsActive] = useState<boolean>(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number>(steps[0].durationSeconds);
-  const [voiceGuidanceEnabled, setVoiceGuidanceEnabled] = useState<boolean>(true);
   const [isRitualCompleted, setIsRitualCompleted] = useState<boolean>(false);
 
   const currentStep = steps[currentStepIndex];
-
-  // Calming, grounded Web Speech API Voice synthesis via soundEngine
-  const speakGuidance = (text: string) => {
-    if (!voiceGuidanceEnabled) return;
-    soundEngine.speakSoothing(text, language);
-  };
 
   const handlePullNewKarmicCard = () => {
     soundEngine.playCardFlip();
@@ -82,7 +75,7 @@ export default function MeditationView({
     }, 150);
   };
 
-  // Sound cue on step change
+  // Sound cue on step change (Gentle Tibetan gong & crystal bowls)
   const triggerStepSound = (phase: 'inhale' | 'hold' | 'exhale') => {
     soundEngine.init();
     if (phase === 'inhale') {
@@ -123,7 +116,6 @@ export default function MeditationView({
       setCurrentStepIndex(nextIndex);
       setSecondsRemaining(steps[nextIndex].durationSeconds);
       triggerStepSound(steps[nextIndex].phase);
-      speakGuidance(steps[nextIndex].voicePrompt);
     } else {
       // Completed all 3 steps of current cycle
       if (currentCycle < 3) {
@@ -132,21 +124,11 @@ export default function MeditationView({
         setCurrentStepIndex(0);
         setSecondsRemaining(steps[0].durationSeconds);
         triggerStepSound(steps[0].phase);
-        speakGuidance(
-          language === 'tr'
-            ? `${nextCycle}. döngüye geçiyoruz. Derin nefes al...`
-            : `Starting cycle ${nextCycle}. Take a deep breath...`
-        );
       } else {
         // Complete ritual
         setIsActive(false);
         setIsRitualCompleted(true);
         soundEngine.playFairyDust();
-        speakGuidance(
-          language === 'tr'
-            ? 'Ata karması çözüldü ve karmik bağ sevgiyle serbest bırakıldı.'
-            : 'Ancestral karma is resolved and karmic ties are severed in love.'
-        );
       }
     }
   };
@@ -157,7 +139,6 @@ export default function MeditationView({
     setCurrentStepIndex(index);
     setSecondsRemaining(steps[index].durationSeconds);
     triggerStepSound(steps[index].phase);
-    speakGuidance(steps[index].voicePrompt);
   };
 
   const handleStartPause = () => {
@@ -165,12 +146,8 @@ export default function MeditationView({
     if (!isActive) {
       setIsActive(true);
       triggerStepSound(currentStep.phase);
-      speakGuidance(currentStep.voicePrompt);
     } else {
       setIsActive(false);
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
     }
   };
 
@@ -463,19 +440,8 @@ export default function MeditationView({
           </div>
         </div>
 
-        {/* Action Controls: Start/Pause, Reset, Voice Toggle */}
+        {/* Action Controls: Start/Pause, Reset */}
         <div className="flex items-center justify-center gap-3 pt-1">
-          <button
-            onClick={() => setVoiceGuidanceEnabled(!voiceGuidanceEnabled)}
-            className={`p-3 rounded-full border transition-all cursor-pointer ${
-              voiceGuidanceEnabled
-                ? 'bg-white text-neutral-900 border-black/10 shadow-sm'
-                : 'bg-neutral-200 text-neutral-500 border-transparent'
-            }`}
-            title={voiceGuidanceEnabled ? 'Sesli Rehber Açık' : 'Sesli Rehber Kapalı'}
-          >
-            {voiceGuidanceEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
-          </button>
 
           <RippleButton
             platform={platform}
@@ -574,11 +540,6 @@ export default function MeditationView({
                 setIsRitualCompleted(true);
                 setIsActive(false);
                 soundEngine.playFairyDust();
-                speakGuidance(
-                  language === 'tr'
-                    ? 'Ata karması ve bağları sevgiyle mühürlendi.'
-                    : 'Ancestral karma and cords sealed in love.'
-                );
               }}
               className="w-full py-2.5 px-4 rounded-2xl bg-neutral-900 hover:bg-black text-white text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow"
             >

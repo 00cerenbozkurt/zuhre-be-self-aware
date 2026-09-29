@@ -2,11 +2,25 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Sparkles, User, Heart, Users, RefreshCw, Edit3, Check, X, Shield, Compass } from 'lucide-react';
+import {
+  ChevronDown,
+  Sparkles,
+  User,
+  Heart,
+  Users,
+  RefreshCw,
+  Edit3,
+  Check,
+  X,
+  Shield,
+  Compass,
+  Shuffle
+} from 'lucide-react';
 import { PlatformStyle, getAdaptiveClasses } from '../../lib/platformTheme';
 import { fetchGeminiReading, ReadingResult } from '../../lib/geminiFortuneService';
 import { soundEngine } from '../../lib/soundEngine';
 import { getTranslations, Language } from '../../lib/translations';
+import tarotDeck from '../../app/data/tarotDeck.json';
 import RippleButton from '../RippleButton';
 
 interface BondsViewProps {
@@ -38,14 +52,16 @@ export default function BondsView({
   const classes = getAdaptiveClasses(platform);
   const t = getTranslations(language);
 
-  // User Profile State
+  // User Profile State (Zodiac + Tarot)
   const [userName, setUserName] = useState(language === 'tr' ? 'Sen' : 'You');
   const [userSign, setUserSign] = useState(language === 'tr' ? 'Terazi ♎' : 'Libra ♎');
   const [userRising, setUserRising] = useState(language === 'tr' ? 'Akrep ♏' : 'Scorpio ♏');
+  const [userTarotCard, setUserTarotCard] = useState('The Lovers');
 
-  // Partner Profile State
+  // Partner Profile State (Zodiac + Tarot)
   const [partnerName, setPartnerName] = useState('Alex');
   const [partnerSign, setPartnerSign] = useState(language === 'tr' ? 'Koç ♈' : 'Aries ♈');
+  const [partnerTarotCard, setPartnerTarotCard] = useState('The Emperor');
   
   // Connection Type
   const [connectionType, setConnectionType] = useState<'Romantic' | 'Friendship' | 'Karmic' | 'Family'>('Romantic');
@@ -59,18 +75,31 @@ export default function BondsView({
   const [isLoading, setIsLoading] = useState(false);
   const [bondResult, setBondResult] = useState<ReadingResult | null>(null);
 
-  // Quick Partner Presets
+  // Quick Partner Presets with both Signs & Tarot Cards
   const PARTNER_PRESETS = [
-    { name: 'Alex', sign: language === 'tr' ? 'Koç ♈' : 'Aries ♈' },
-    { name: 'Maya', sign: language === 'tr' ? 'Akrep ♏' : 'Scorpio ♏' },
-    { name: 'Deniz', sign: language === 'tr' ? 'Boğa ♉' : 'Taurus ♉' },
-    { name: 'Can', sign: language === 'tr' ? 'Aslan ♌' : 'Leo ♌' },
+    { name: 'Alex', sign: language === 'tr' ? 'Koç ♈' : 'Aries ♈', tarot: 'The Emperor' },
+    { name: 'Maya', sign: language === 'tr' ? 'Akrep ♏' : 'Scorpio ♏', tarot: 'The High Priestess' },
+    { name: 'Deniz', sign: language === 'tr' ? 'Boğa ♉' : 'Taurus ♉', tarot: 'The Empress' },
+    { name: 'Can', sign: language === 'tr' ? 'Aslan ♌' : 'Leo ♌', tarot: 'Strength' },
   ];
 
-  const handleApplyPreset = (preset: { name: string; sign: string }) => {
+  const handleApplyPreset = (preset: { name: string; sign: string; tarot: string }) => {
     soundEngine.playCardFlip();
     setPartnerName(preset.name);
     setPartnerSign(preset.sign);
+    setPartnerTarotCard(preset.tarot);
+  };
+
+  const handleShuffleUserTarot = () => {
+    soundEngine.playCardFlip();
+    const random = tarotDeck[Math.floor(Math.random() * Math.min(22, tarotDeck.length))];
+    setUserTarotCard(random.name);
+  };
+
+  const handleShufflePartnerTarot = () => {
+    soundEngine.playCardFlip();
+    const random = tarotDeck[Math.floor(Math.random() * Math.min(22, tarotDeck.length))];
+    setPartnerTarotCard(random.name);
   };
 
   const handleRunBond = async () => {
@@ -85,9 +114,9 @@ export default function BondsView({
     try {
       const result = await fetchGeminiReading({
         theme: 'bond',
-        question: `Run an in-depth ${connectionType.toLowerCase()} relationship dynamic and psychological bond between ${userName} (${userSign}) and ${partnerName} (${partnerSign})`,
-        userProfile: { name: userName, sunSign: userSign, risingSign: userRising },
-        partnerProfile: { name: partnerName, sunSign: partnerSign, connectionType },
+        question: `Run an in-depth ${connectionType.toLowerCase()} relationship dynamic and psychological bond between ${userName} (${userSign} & Tarot Archetype: ${userTarotCard}) and ${partnerName} (${partnerSign} & Tarot Archetype: ${partnerTarotCard}). Synthesize both their astrological elements and Tarot archetypes into a profound mirror reflection.`,
+        userProfile: { name: userName, sunSign: `${userSign} (Tarot: ${userTarotCard})`, risingSign: userRising },
+        partnerProfile: { name: partnerName, sunSign: `${partnerSign} (Tarot: ${partnerTarotCard})`, connectionType },
         language,
       });
 
@@ -101,22 +130,10 @@ export default function BondsView({
     }
   };
 
-  const getConnectionTypeLabel = () => {
-    switch (connectionType) {
-      case 'Romantic':
-        return t.romanticConnection;
-      case 'Friendship':
-        return t.friendshipConnection;
-      case 'Karmic':
-        return t.karmicConnection;
-      case 'Family':
-        return t.familyConnection;
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col justify-between px-6 pt-20 pb-32 transition-colors relative overflow-hidden">
+    <div className="min-h-screen bg-white text-black flex flex-col justify-between px-4 sm:px-6 pt-20 pb-36 transition-colors relative overflow-hidden">
       <div className="w-full max-w-sm mx-auto space-y-6 my-auto text-center relative z-10">
+        
         {/* Top Interlocking Rings Icon */}
         <div className="flex flex-col items-center space-y-2">
           <div className="flex items-center -space-x-2">
@@ -124,17 +141,19 @@ export default function BondsView({
             <div className="w-8 h-8 rounded-full border-2 border-black" />
           </div>
           <h1 className="text-3xl font-extrabold tracking-tight text-neutral-950">
-            {t.bondsTitle}
+            {language === 'tr' ? 'İlişki Bağları' : 'Relationship Bonds'}
           </h1>
-          <p className="text-sm leading-relaxed text-neutral-800 font-normal px-4 max-w-xs">
-            {t.bondsSubtitle}
+          <p className="text-xs leading-relaxed text-neutral-700 font-normal px-2 max-w-xs">
+            {language === 'tr'
+              ? 'Hem burçların elementel dengesini hem de çekilen Tarot arketiplerinin aralarındaki psikolojik aynayı incele.'
+              : 'Analyze both astrological element chemistry and tarot archetypal dynamics between two souls.'}
           </p>
         </div>
 
         {/* Thin Divider Line */}
         <div className="w-full h-[1px] bg-neutral-200" />
 
-        {/* Profile Circles & Ampersand with Intersecting Cosmic Ripples */}
+        {/* Profile Circles & Ampersand */}
         <div className="relative flex items-center justify-center gap-6 py-2">
           {/* Subtle Ambient Resonance Rings */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -152,7 +171,7 @@ export default function BondsView({
                 soundEngine.playCardFlip();
               }}
               className="w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-md bg-gradient-to-b from-amber-400 via-orange-300 to-indigo-900 flex flex-col items-center justify-center relative z-10 cursor-pointer active:scale-95 transition-transform"
-              title={language === 'tr' ? 'Profilini ve Burcunu Düzenle' : 'Edit Your Profile & Sign'}
+              title={language === 'tr' ? 'Burcunu ve Tarot Kartını Düzenle' : 'Edit Your Sign & Tarot Card'}
             >
               <span className="text-white font-black text-xl drop-shadow">
                 {userName.charAt(0).toUpperCase()}
@@ -161,10 +180,13 @@ export default function BondsView({
                 {userSign.split(' ')[1] || userSign.split(' ')[0]}
               </span>
             </button>
-            <div className="mt-2 text-xs font-semibold text-neutral-900 flex items-center gap-1">
+            <div className="mt-2 text-xs font-semibold text-neutral-900">
               <span>{userName}</span>
-              <span className="text-neutral-500 text-[11px]">({userSign.split(' ')[0]})</span>
+              <span className="text-neutral-500 text-[11px] block">({userSign.split(' ')[0]})</span>
             </div>
+            <span className="mt-0.5 px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-bold">
+              ✦ {userTarotCard}
+            </span>
           </div>
 
           <span className="text-2xl font-light text-neutral-400 z-10">&</span>
@@ -179,7 +201,7 @@ export default function BondsView({
                 soundEngine.playCardFlip();
               }}
               className="w-20 h-20 rounded-full bg-[#EAE8E4] hover:bg-[#E0DDD8] border-2 border-white shadow-inner flex flex-col items-center justify-center text-neutral-800 relative z-10 cursor-pointer active:scale-95 transition-transform"
-              title={language === 'tr' ? 'Partner Adı ve Burcunu Düzenle' : 'Edit Partner Name & Sign'}
+              title={language === 'tr' ? 'Partner Burcunu ve Tarot Kartını Düzenle' : 'Edit Partner Sign & Tarot Card'}
             >
               <span className="text-neutral-900 font-black text-xl">
                 {partnerName.charAt(0).toUpperCase()}
@@ -188,28 +210,31 @@ export default function BondsView({
                 {partnerSign.split(' ')[1] || partnerSign.split(' ')[0]}
               </span>
             </button>
-            <div className="mt-2 text-xs font-semibold text-neutral-900 flex items-center gap-1">
+            <div className="mt-2 text-xs font-semibold text-neutral-900">
               <span>{partnerName}</span>
-              <span className="text-neutral-500 text-[11px]">({partnerSign.split(' ')[0]})</span>
+              <span className="text-neutral-500 text-[11px] block">({partnerSign.split(' ')[0]})</span>
             </div>
+            <span className="mt-0.5 px-2 py-0.5 rounded-full bg-neutral-200 text-neutral-800 text-[10px] font-bold">
+              ✦ {partnerTarotCard}
+            </span>
           </div>
         </div>
 
-        {/* Quick Edit Pills Bar */}
+        {/* Quick Edit Profiles & Tarot Button */}
         <div className="flex items-center justify-center gap-2 pt-1">
           <button
             onClick={() => {
               setIsEditingProfiles(!isEditingProfiles);
               soundEngine.playCardFlip();
             }}
-            className="inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-full bg-[#F5F3EF] hover:bg-[#EAE6DE] border border-black/5 text-[11px] font-semibold text-neutral-800 transition-all cursor-pointer active:scale-95"
+            className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full bg-[#F5F3EF] hover:bg-[#EAE6DE] border border-black/10 text-xs font-semibold text-neutral-800 transition-all cursor-pointer active:scale-95"
           >
-            <Edit3 size={12} className="text-neutral-600" />
-            <span>{t.editProfiles}</span>
+            <Edit3 size={13} className="text-neutral-600" />
+            <span>{language === 'tr' ? 'Burç ve Tarot Kartlarını Düzenle' : 'Edit Signs & Tarot Cards'}</span>
           </button>
         </div>
 
-        {/* Expandable Name & Zodiac Configuration Drawer */}
+        {/* Expandable Configuration Drawer for BOTH Zodiac & Tarot */}
         <AnimatePresence>
           {isEditingProfiles && (
             <motion.div
@@ -222,44 +247,43 @@ export default function BondsView({
               <div className="flex items-center rounded-2xl bg-black/5 p-1">
                 <button
                   onClick={() => setActiveEditTab('you')}
-                  className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     activeEditTab === 'you'
                       ? 'bg-white text-black shadow-sm'
                       : 'text-neutral-600 hover:text-black'
                   }`}
                 >
-                  {userName} ({t.yourSign.split(' ')[0]})
+                  {userName}
                 </button>
                 <button
                   onClick={() => setActiveEditTab('partner')}
-                  className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     activeEditTab === 'partner'
                       ? 'bg-white text-black shadow-sm'
                       : 'text-neutral-600 hover:text-black'
                   }`}
                 >
-                  {partnerName} ({t.partnerSign.split(' ')[0]})
+                  {partnerName}
                 </button>
               </div>
 
-              {/* Edit You Profile */}
+              {/* Edit You Profile (Sign + Tarot) */}
               {activeEditTab === 'you' && (
                 <div className="space-y-3">
                   <div>
-                    <label className="text-[11px] font-bold text-neutral-600 uppercase tracking-wider block mb-1">
+                    <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block mb-1">
                       {t.yourName}
                     </label>
                     <input
                       type="text"
                       value={userName}
                       onChange={(e) => setUserName(e.target.value)}
-                      placeholder={language === 'tr' ? 'Kendi adını yaz...' : 'Your name...'}
-                      className="w-full py-2 px-3 rounded-xl bg-white border border-black/10 text-xs font-semibold text-neutral-900 focus:outline-none focus:ring-2 focus:ring-black/20"
+                      className="w-full py-2 px-3 rounded-xl bg-white border border-black/10 text-xs font-semibold text-neutral-900 focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-bold text-neutral-600 uppercase tracking-wider block mb-1">
+                    <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block mb-1">
                       {t.yourSign}
                     </label>
                     <select
@@ -274,22 +298,48 @@ export default function BondsView({
                       ))}
                     </select>
                   </div>
+
+                  {/* Tarot Card for You */}
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">
+                        {language === 'tr' ? 'Senin Bağ Tarot Kartın' : 'Your Bond Tarot Card'}
+                      </label>
+                      <button
+                        onClick={handleShuffleUserTarot}
+                        className="text-[10px] text-amber-700 hover:text-amber-900 font-bold flex items-center gap-1 cursor-pointer"
+                      >
+                        <Shuffle size={11} />
+                        <span>{language === 'tr' ? 'Rastgele Çek' : 'Draw Random'}</span>
+                      </button>
+                    </div>
+                    <select
+                      value={userTarotCard}
+                      onChange={(e) => setUserTarotCard(e.target.value)}
+                      className="w-full py-2 px-3 rounded-xl bg-white border border-black/10 text-xs font-semibold text-neutral-900 focus:outline-none cursor-pointer"
+                    >
+                      {tarotDeck.slice(0, 22).map((c) => (
+                        <option key={c.id} value={c.name}>
+                          {c.name} ({c.archetype})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               )}
 
-              {/* Edit Partner Profile */}
+              {/* Edit Partner Profile (Sign + Tarot) */}
               {activeEditTab === 'partner' && (
                 <div className="space-y-3">
                   <div>
-                    <label className="text-[11px] font-bold text-neutral-600 uppercase tracking-wider block mb-1">
+                    <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block mb-1">
                       {t.partnerName}
                     </label>
                     <input
                       type="text"
                       value={partnerName}
                       onChange={(e) => setPartnerName(e.target.value)}
-                      placeholder={t.enterPartnerName}
-                      className="w-full py-2 px-3 rounded-xl bg-white border border-black/10 text-xs font-semibold text-neutral-900 focus:outline-none focus:ring-2 focus:ring-black/20"
+                      className="w-full py-2 px-3 rounded-xl bg-white border border-black/10 text-xs font-semibold text-neutral-900 focus:outline-none"
                     />
                   </div>
 
@@ -299,19 +349,19 @@ export default function BondsView({
                       <button
                         key={p.name}
                         onClick={() => handleApplyPreset(p)}
-                        className={`py-1 px-2.5 rounded-full text-[10px] font-semibold border transition-all ${
+                        className={`py-1 px-2.5 rounded-full text-[10px] font-semibold border transition-all cursor-pointer ${
                           partnerName === p.name
                             ? 'bg-black text-white border-black'
                             : 'bg-white text-neutral-700 border-black/10 hover:bg-neutral-100'
                         }`}
                       >
-                        {p.name} ({p.sign.split(' ')[0]})
+                        {p.name} ({p.sign.split(' ')[0]} • {p.tarot})
                       </button>
                     ))}
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-bold text-neutral-600 uppercase tracking-wider block mb-1">
+                    <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block mb-1">
                       {t.partnerSign}
                     </label>
                     <select
@@ -322,6 +372,33 @@ export default function BondsView({
                       {ZODIAC_SIGNS.map((z) => (
                         <option key={z.id} value={language === 'tr' ? z.nameTr : z.nameEn}>
                           {language === 'tr' ? z.nameTr : z.nameEn} ({z.element})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Tarot Card for Partner */}
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">
+                        {language === 'tr' ? 'Partnerin Bağ Tarot Kartı' : 'Partner Bond Tarot Card'}
+                      </label>
+                      <button
+                        onClick={handleShufflePartnerTarot}
+                        className="text-[10px] text-amber-700 hover:text-amber-900 font-bold flex items-center gap-1 cursor-pointer"
+                      >
+                        <Shuffle size={11} />
+                        <span>{language === 'tr' ? 'Rastgele Çek' : 'Draw Random'}</span>
+                      </button>
+                    </div>
+                    <select
+                      value={partnerTarotCard}
+                      onChange={(e) => setPartnerTarotCard(e.target.value)}
+                      className="w-full py-2 px-3 rounded-xl bg-white border border-black/10 text-xs font-semibold text-neutral-900 focus:outline-none cursor-pointer"
+                    >
+                      {tarotDeck.slice(0, 22).map((c) => (
+                        <option key={c.id} value={c.name}>
+                          {c.name} ({c.archetype})
                         </option>
                       ))}
                     </select>
@@ -345,33 +422,6 @@ export default function BondsView({
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Dropdown Pickers Row (You & Partner Quick Pill Bar) */}
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            onClick={() => {
-              setActiveEditTab('you');
-              setIsEditingProfiles(true);
-              soundEngine.playCardFlip();
-            }}
-            className="py-2.5 px-3.5 rounded-full bg-[#EAE8E4] hover:bg-[#E2DFD8] text-xs font-semibold text-neutral-900 flex items-center justify-between shadow-sm cursor-pointer transition-all"
-          >
-            <span className="truncate">{userName} ({userSign.split(' ')[0]})</span>
-            <ChevronDown size={14} className="text-neutral-500 shrink-0 ml-1" />
-          </button>
-
-          <button
-            onClick={() => {
-              setActiveEditTab('partner');
-              setIsEditingProfiles(true);
-              soundEngine.playCardFlip();
-            }}
-            className="py-2.5 px-3.5 rounded-full bg-[#EAE8E4] hover:bg-[#E2DFD8] text-xs font-semibold text-neutral-900 flex items-center justify-between shadow-sm cursor-pointer transition-all"
-          >
-            <span className="truncate">{partnerName} ({partnerSign.split(' ')[0]})</span>
-            <ChevronDown size={14} className="text-neutral-500 shrink-0 ml-1" />
-          </button>
-        </div>
 
         {/* Connection Type Selector Pill */}
         <div className="flex flex-wrap items-center justify-center gap-1.5">
@@ -401,12 +451,12 @@ export default function BondsView({
           })}
         </div>
 
-        {/* View Bond Action Pill Button with Dynamic Ripple */}
+        {/* View Bond Action Pill Button */}
         <RippleButton
           platform={platform}
           onClick={handleRunBond}
           disabled={isLoading}
-          className="w-full py-4 px-6 rounded-full bg-[#757579] hover:bg-black text-white font-semibold text-base transition-all shadow-md active:scale-97 flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full py-4 px-6 rounded-full bg-black hover:bg-neutral-800 text-white font-semibold text-sm transition-all shadow-md active:scale-97 flex items-center justify-center gap-2 cursor-pointer"
         >
           {isLoading ? (
             <>
@@ -416,7 +466,7 @@ export default function BondsView({
           ) : (
             <span>
               {language === 'tr'
-                ? `${userName} & ${partnerName} Bağını İncele`
+                ? `${userName} & ${partnerName} Bağını İncele (Burç + Tarot)`
                 : `View Bond: ${userName} & ${partnerName}`}
             </span>
           )}
@@ -442,41 +492,43 @@ export default function BondsView({
             animate={{ opacity: 1, y: 0 }}
             className="mt-6 p-5 rounded-3xl bg-[#F5F2EB] border border-black/10 text-left space-y-3 shadow-lg"
           >
+            {/* Header Badge: Dual Zodiac + Tarot Archetypes */}
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">
-                {bondResult.subtitle || `${userName} (${userSign}) & ${partnerName} (${partnerSign})`}
+              <span className="text-[10px] uppercase tracking-wider text-neutral-600 font-bold">
+                {userSign.split(' ')[0]} ({userTarotCard}) • {partnerSign.split(' ')[0]} ({partnerTarotCard})
               </span>
               <Sparkles size={14} className="text-amber-500" />
             </div>
-            <h3 className="text-lg font-bold text-neutral-950">
+
+            <h3 className="text-lg font-extrabold text-neutral-950 leading-tight">
               {bondResult.headline}
             </h3>
+
             <p className="text-xs text-neutral-700 leading-relaxed">
               {bondResult.dailyVibe}
             </p>
+
             {bondResult.summary && (
-              <div className="p-3 rounded-2xl bg-white/70 border border-black/5 text-xs text-neutral-900 font-medium leading-relaxed">
-                <span className="text-[9px] uppercase font-bold text-neutral-500 tracking-wider block mb-1">
-                  {language === 'tr' ? '✦ BAĞ ÖZETİ & ANA DİNAMİK' : '✦ BOND SUMMARY & CORE DYNAMIC'}
+              <div className="p-3 rounded-2xl bg-white/80 border border-black/5 text-xs text-neutral-900 font-medium leading-relaxed">
+                <span className="text-[9px] uppercase font-bold text-amber-700 tracking-wider block mb-1">
+                  {language === 'tr' ? '✦ BURÇ & TAROT İTTİFAK ANALİZİ' : '✦ ZODIAC & TAROT ALLIANCE'}
                 </span>
                 {bondResult.summary}
               </div>
             )}
+
             {bondResult.keyTakeaways && bondResult.keyTakeaways.length > 0 && (
               <div className="space-y-1.5 pt-1">
                 <span className="text-[9px] uppercase font-bold text-neutral-500 tracking-wider block">
                   {language === 'tr' ? '✦ İLİŞKİ DİNAMİĞİ ÇIKARIMLARI' : '✦ RELATIONSHIP TAKEAWAYS'}
                 </span>
                 {bondResult.keyTakeaways.map((takeaway, idx) => (
-                  <div key={idx} className="p-2 rounded-xl bg-white/50 text-[11px] text-neutral-800 leading-snug">
+                  <div key={idx} className="p-2.5 rounded-xl bg-white/60 text-[11px] text-neutral-800 leading-snug">
                     {takeaway}
                   </div>
                 ))}
               </div>
             )}
-            <div className="text-[11px] text-neutral-600 space-y-2 border-t border-black/5 pt-2">
-              <p>{bondResult.fullInsight.split('\n\n')[0]}</p>
-            </div>
           </motion.div>
         )}
       </div>

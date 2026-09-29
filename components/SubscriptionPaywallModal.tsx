@@ -132,7 +132,7 @@ export default function SubscriptionPaywallModal({
             }`}
           >
             <span className="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full bg-amber-300 text-black text-[9px] font-bold uppercase tracking-wider">
-              {t.save50}
+              {t.save81}
             </span>
             <div className="text-xs font-semibold text-white">{t.annualPlan}</div>
             <div className="text-lg font-bold text-amber-200 mt-0.5">{language === 'tr' ? '₺99' : '₺99 / $9.99'}</div>

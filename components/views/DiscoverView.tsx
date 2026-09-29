@@ -3,18 +3,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  BookOpen,
   Sparkles,
   History,
-  Compass,
-  ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Eye,
-  Volume2,
-  VolumeX,
   Search,
-  CheckCircle2,
+  BookOpen,
+  Compass,
   Layers,
-  ArrowUpRight
+  ArrowRight
 } from 'lucide-react';
 import { PlatformStyle, getAdaptiveClasses } from '../../lib/platformTheme';
 import { Language, getTranslations } from '../../lib/translations';
@@ -45,10 +43,10 @@ export default function DiscoverView({
 
   const [activeTab, setActiveTab] = useState<'symbols' | 'history'>('symbols');
   const [selectedCard, setSelectedCard] = useState<TarotSymbolicInsight | null>(
-    TAROT_SECRET_INSIGHTS[0]
+    TAROT_SECRET_INSIGHTS[0] // Deli (The Fool)
   );
   const [searchQuery, setSearchQuery] = useState('');
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [expandedEraId, setExpandedEraId] = useState<string | null>('visconti');
 
   const filteredCards = TAROT_SECRET_INSIGHTS.filter((c) => {
     const name = language === 'tr' ? c.cardNameTr : c.cardNameEn;
@@ -56,6 +54,7 @@ export default function DiscoverView({
     return (
       name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       archetype.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.arcanaNumber.includes(searchQuery) ||
       c.element.toLowerCase().includes(searchQuery.toLowerCase())
     );
   });
@@ -63,23 +62,11 @@ export default function DiscoverView({
   const handleCardSelect = (card: TarotSymbolicInsight) => {
     soundEngine.playCardFlip();
     setSelectedCard(card);
-    soundEngine.stopSpeaking();
-    setIsSpeaking(false);
   };
 
-  const handleReadAloud = (text: string) => {
-    if (isSpeaking) {
-      soundEngine.stopSpeaking();
-      setIsSpeaking(false);
-    } else {
-      setIsSpeaking(true);
-      soundEngine.speakSoothing(
-        text,
-        language,
-        () => setIsSpeaking(false),
-        () => setIsSpeaking(true)
-      );
-    }
+  const handleToggleEra = (eraId: string) => {
+    soundEngine.playCardFlip();
+    setExpandedEraId((prev) => (prev === eraId ? null : eraId));
   };
 
   return (
@@ -95,7 +82,7 @@ export default function DiscoverView({
         <div className="space-y-1.5 text-center pt-2">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-amber-300 text-[11px] font-semibold tracking-widest uppercase">
             <Sparkles size={12} className="text-amber-300" />
-            <span>{language === 'tr' ? 'EZOTERİK BİLGELİK & TARİH' : 'ESOTERIC WISDOM & HISTORY'}</span>
+            <span>{language === 'tr' ? '22 BÜYÜK ARKANA & TAROT TARİHİ' : '22 MAJOR ARCANA & TAROT HISTORY'}</span>
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
@@ -103,8 +90,8 @@ export default function DiscoverView({
           </h1>
           <p className="text-xs text-neutral-400 max-w-xs mx-auto leading-relaxed">
             {language === 'tr'
-              ? 'Kartların arkasındaki gizli sembolikleri, tarihsel ekolleri ve Carl Jung’un psikolojik arketiplerini keşfet.'
-              : 'Unveil the hidden symbols, historical lineages, and Jungian archetypes behind the tarot deck.'}
+              ? 'Tüm 22 Büyük Arkana kartının gizli sembollerini keşfet; bloklara dokunarak 600 yıllık tarihi derinlemesine oku.'
+              : 'Discover the secret symbolisms of all 22 Major Arcana and tap historical eras for deep narratives.'}
           </p>
         </div>
 
@@ -122,7 +109,7 @@ export default function DiscoverView({
             }`}
           >
             <Eye size={13} />
-            <span>{language === 'tr' ? 'Gizli Sembolikler' : 'Secret Symbols'}</span>
+            <span>{language === 'tr' ? '22 Gizli Sembolik' : '22 Secret Symbols'}</span>
           </button>
           <button
             onClick={() => {
@@ -140,7 +127,7 @@ export default function DiscoverView({
           </button>
         </div>
 
-        {/* TAB 1: Secret Symbols & Archetypes */}
+        {/* TAB 1: Secret Symbols of All 22 Major Arcana */}
         {activeTab === 'symbols' && (
           <div className="space-y-4">
             {/* Search Input */}
@@ -155,37 +142,37 @@ export default function DiscoverView({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={
                   language === 'tr'
-                    ? 'Kart ara (örn: Büyücü, Deli, Ermiş)...'
-                    : 'Search cards (e.g. Fool, Magician)...'
+                    ? '22 kart içinde ara (örn: Büyücü, Kule, Ay, Güç, 0, VIII)...'
+                    : 'Search 22 cards (e.g. Magician, Tower, Moon, 0, VIII)...'
                 }
                 className="w-full pl-9 pr-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-neutral-500 text-xs focus:outline-none focus:border-amber-400/50 transition-all"
               />
             </div>
 
-            {/* Horizontal Mini Card Selector */}
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
+            {/* Horizontal Mini Card Selector for All 22 Cards */}
+            <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-none snap-x no-scrollbar">
               {filteredCards.map((card) => {
                 const isSelected = selectedCard?.cardId === card.cardId;
                 return (
                   <button
                     key={card.cardId}
                     onClick={() => handleCardSelect(card)}
-                    className={`px-3 py-2 rounded-2xl border text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer snap-start ${
+                    className={`px-3 py-2 rounded-2xl border text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 cursor-pointer snap-start ${
                       isSelected
                         ? 'bg-amber-400/15 border-amber-300 text-amber-200 shadow-[0_0_12px_rgba(251,191,36,0.2)]'
                         : 'bg-white/5 border-white/10 text-neutral-400 hover:text-white hover:border-white/20'
                     }`}
                   >
-                    <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-bold text-amber-300">
+                    <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-[9px] font-bold text-amber-300">
                       {card.arcanaNumber}
                     </span>
-                    <span>{language === 'tr' ? card.cardNameTr : card.cardNameEn}</span>
+                    <span>{language === 'tr' ? card.cardNameTr.split(' (')[0] : card.cardNameEn}</span>
                   </button>
                 );
               })}
             </div>
 
-            {/* Detailed Selected Card Insight Sheet */}
+            {/* Detailed Selected Card Insight Sheet (No TTS as requested) */}
             {selectedCard && (
               <motion.div
                 key={selectedCard.cardId}
@@ -195,7 +182,7 @@ export default function DiscoverView({
               >
                 {/* Card Header & Badges */}
                 <div className="flex items-start justify-between">
-                  <div>
+                  <div className="text-left">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-amber-300 uppercase tracking-widest">
                         ARKANA {selectedCard.arcanaNumber}
@@ -209,32 +196,13 @@ export default function DiscoverView({
                     </h2>
                   </div>
 
-                  {/* Soothing Audio Listen Button */}
-                  <button
-                    onClick={() =>
-                      handleReadAloud(
-                        `${language === 'tr' ? selectedCard.cardNameTr : selectedCard.cardNameEn}. ${
-                          language === 'tr' ? selectedCard.jungianArchetypeTr : selectedCard.jungianArchetypeEn
-                        }. ${language === 'tr' ? selectedCard.meditativeMottoTr : selectedCard.meditativeMottoEn}. ${
-                          (language === 'tr' ? selectedCard.secretSymbolsTr : selectedCard.secretSymbolsEn)
-                            .map((s) => `${s.symbol}: ${s.hiddenMeaning}`)
-                            .join('. ')
-                        }`
-                      )
-                    }
-                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-neutral-300 hover:text-white transition-all cursor-pointer"
-                    title={language === 'tr' ? 'Sakin sesle dinle' : 'Listen with soothing voice'}
-                  >
-                    {isSpeaking ? (
-                      <VolumeX size={16} className="text-amber-300 animate-pulse" />
-                    ) : (
-                      <Volume2 size={16} />
-                    )}
-                  </button>
+                  <span className="text-sm font-bold px-2.5 py-1 rounded-xl bg-amber-400/15 border border-amber-400/30 text-amber-200">
+                    {selectedCard.kabbalahLetter}
+                  </span>
                 </div>
 
                 {/* Jungian Archetype Banner */}
-                <div className="p-3 rounded-2xl bg-amber-400/10 border border-amber-300/20">
+                <div className="p-3 rounded-2xl bg-amber-400/10 border border-amber-300/20 text-left">
                   <div className="text-[10px] uppercase font-bold text-amber-300 tracking-wider">
                     {language === 'tr' ? '✦ Jungian Psikolojik Arketip' : '✦ Jungian Archetype'}
                   </div>
@@ -246,7 +214,7 @@ export default function DiscoverView({
                 </div>
 
                 {/* Astrological & Kabbalistic Anchor */}
-                <div className="grid grid-cols-2 gap-2 text-[11px]">
+                <div className="grid grid-cols-2 gap-2 text-[11px] text-left">
                   <div className="p-2.5 rounded-xl bg-white/5 border border-white/5">
                     <span className="text-neutral-400 block text-[10px] uppercase">
                       {language === 'tr' ? 'Astrolojik Bağ' : 'Astrological Link'}
@@ -257,16 +225,16 @@ export default function DiscoverView({
                   </div>
                   <div className="p-2.5 rounded-xl bg-white/5 border border-white/5">
                     <span className="text-neutral-400 block text-[10px] uppercase">
-                      {language === 'tr' ? 'İbrani Harfi' : 'Hebrew Letter'}
+                      {language === 'tr' ? 'Tarihsel Köken' : 'Historical Origin'}
                     </span>
-                    <span className="text-neutral-200 font-semibold">
-                      {selectedCard.kabbalahLetter}
+                    <span className="text-neutral-300 font-medium text-[10px] leading-tight line-clamp-2">
+                      {language === 'tr' ? selectedCard.historicalNoteTr : selectedCard.historicalNoteEn}
                     </span>
                   </div>
                 </div>
 
                 {/* Secret Symbols Breakdown */}
-                <div className="space-y-2.5 pt-1">
+                <div className="space-y-2.5 pt-1 text-left">
                   <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
                     <Eye size={13} className="text-amber-300" />
                     <span>{language === 'tr' ? 'Karttaki Gizli Sembolikler' : 'Hidden Symbolisms'}</span>
@@ -279,10 +247,10 @@ export default function DiscoverView({
                     ).map((sym, idx) => (
                       <div
                         key={idx}
-                        className="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors text-left"
+                        className="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors"
                       >
                         <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
                           <span>{sym.symbol}</span>
                         </h4>
                         <p className="text-[11px] text-neutral-300 leading-relaxed mt-1">
@@ -296,7 +264,7 @@ export default function DiscoverView({
                 {/* Meditative Motto */}
                 <div className="pt-2 border-t border-white/10 text-center">
                   <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-wider">
-                    {language === 'tr' ? '✦ İçsel Farkındalık Cümlesi' : '✦ Self-Awareness Mantra'}
+                    {language === 'tr' ? '✦ Öz Farkındalık Hatırlatıcısı' : '✦ Self-Awareness Mantra'}
                   </span>
                   <p className="text-xs italic text-neutral-300 mt-1 px-3">
                     "{language === 'tr' ? selectedCard.meditativeMottoTr : selectedCard.meditativeMottoEn}"
@@ -307,58 +275,130 @@ export default function DiscoverView({
           </div>
         )}
 
-        {/* TAB 2: Historical Eras of Tarot */}
+        {/* TAB 2: Historical Eras with Expandable Deep Stories */}
         {activeTab === 'history' && (
-          <div className="space-y-4">
+          <div className="space-y-4 text-left">
             <p className="text-xs text-neutral-400 px-1">
               {language === 'tr'
-                ? 'Tarot bir fal kağıdı değil; insanlığın 600 yıllık felsefe, simya ve bilinçdışı yolculuğunun görsel haritasıdır.'
-                : 'Tarot is not mere fortune telling; it is a 600-year visual map of philosophy, alchemy, and the human subconscious.'}
+                ? 'İncelemek istediğin döneme tıkla; 15. yüzyıl saraylarından modern psikanalize uzanan hikaye ve ezoterik kırılmalar açılsın.'
+                : 'Tap any era to expand its rich narrative, historical figures, and esoteric innovations.'}
             </p>
 
             <div className="space-y-3">
-              {TAROT_HISTORICAL_PERIODS.map((period, index) => (
-                <div
-                  key={period.id}
-                  className="p-4 rounded-3xl bg-[#16151D] border border-white/10 space-y-2.5 text-left"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold tracking-wider uppercase">
-                      {period.year}
-                    </span>
-                    <span className="text-[11px] text-neutral-400 font-medium">
-                      {language === 'tr' ? period.locationTr : period.locationEn}
-                    </span>
-                  </div>
+              {TAROT_HISTORICAL_PERIODS.map((period) => {
+                const isExpanded = expandedEraId === period.id;
 
-                  <h3 className="text-base font-extrabold text-white">
-                    {language === 'tr' ? period.titleTr : period.titleEn}
-                  </h3>
+                return (
+                  <motion.div
+                    key={period.id}
+                    layout
+                    className={`rounded-3xl border transition-all overflow-hidden ${
+                      isExpanded
+                        ? 'bg-[#181622] border-amber-300/40 shadow-xl'
+                        : 'bg-[#16151D] border-white/10 hover:border-white/20'
+                    }`}
+                  >
+                    {/* Clickable Header Bar */}
+                    <button
+                      onClick={() => handleToggleEra(period.id)}
+                      className="w-full p-4 flex items-center justify-between text-left cursor-pointer"
+                    >
+                      <div className="space-y-1 pr-2">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold tracking-wider uppercase">
+                            {period.year}
+                          </span>
+                          <span className="text-[11px] text-neutral-400">
+                            {language === 'tr' ? period.locationTr : period.locationEn}
+                          </span>
+                        </div>
+                        <h3 className="text-base font-extrabold text-white">
+                          {language === 'tr' ? period.titleTr : period.titleEn}
+                        </h3>
+                      </div>
 
-                  <p className="text-xs text-neutral-300 leading-relaxed">
-                    {language === 'tr' ? period.descriptionTr : period.descriptionEn}
-                  </p>
+                      <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-neutral-400 hover:text-white transition-colors shrink-0">
+                        {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                      </div>
+                    </button>
 
-                  <div className="p-2.5 rounded-2xl bg-white/5 border border-white/5">
-                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">
-                      {language === 'tr' ? '✦ Kalıcı Miras:' : '✦ Enduring Legacy:'}
-                    </span>
-                    <p className="text-[11px] font-medium text-amber-200 mt-0.5">
-                      {language === 'tr' ? period.keyLegacyTr : period.keyLegacyEn}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                    {/* Short Description */}
+                    {!isExpanded && (
+                      <p className="px-4 pb-4 text-xs text-neutral-400 line-clamp-2">
+                        {language === 'tr' ? period.descriptionTr : period.descriptionEn}
+                      </p>
+                    )}
+
+                    {/* Expandable Deep Narrative Body */}
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="px-4 pb-5 space-y-4 border-t border-white/10 pt-3"
+                        >
+                          {/* Long Narrative Story */}
+                          <div>
+                            <span className="text-[10px] uppercase font-bold text-amber-300 tracking-wider block mb-1">
+                              {language === 'tr' ? '✦ Tarihsel Hikaye & Felsefe' : '✦ Historical Narrative'}
+                            </span>
+                            <p className="text-xs text-neutral-200 leading-relaxed font-normal">
+                              {language === 'tr' ? period.longNarrativeTr : period.longNarrativeEn}
+                            </p>
+                          </div>
+
+                          {/* Key Historical Figures */}
+                          <div>
+                            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-wider block mb-1.5">
+                              {language === 'tr' ? 'Önemli Figürler & Ressamlar' : 'Prominent Figures'}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {period.prominentFigures.map((fig, idx) => (
+                                <span
+                                  key={idx}
+                                  className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-300"
+                                >
+                                  {fig}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Esoteric Innovations */}
+                          <div className="p-3 rounded-2xl bg-white/5 border border-white/5 space-y-1.5">
+                            <span className="text-[10px] uppercase font-bold text-amber-300 tracking-wider block">
+                              {language === 'tr' ? '✦ Bu Ekolün Ezoterik Mirası' : '✦ Esoteric Innovations'}
+                            </span>
+                            <ul className="space-y-1 text-xs text-neutral-300">
+                              {(language === 'tr'
+                                ? period.esotericInnovationsTr
+                                : period.esotericInnovationsEn
+                              ).map((inno, i) => (
+                                <li key={i} className="flex items-start gap-1.5">
+                                  <span className="text-amber-400 font-bold">•</span>
+                                  <span>{inno}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         )}
 
-        {/* Bottom Navigation Shortcut to Personal Consultation */}
+        {/* Bottom Consultation Shortcut */}
         <div className="pt-2">
           <RippleButton
             platform={platform}
             onClick={onOpenConsultation}
-            className="w-full py-3.5 px-5 rounded-full bg-white text-black font-semibold text-xs hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 shadow-lg"
+            className="w-full py-3.5 px-5 rounded-full bg-white text-black font-semibold text-xs hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
           >
             <Sparkles size={14} className="text-amber-600" />
             <span>

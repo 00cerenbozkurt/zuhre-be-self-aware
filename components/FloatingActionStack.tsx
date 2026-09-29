@@ -48,21 +48,7 @@ export default function FloatingActionStack({
         <Share2 size={18} className="translate-x-[0.5px]" />
       </button>
 
-      {/* 2. Cycles / Transits Counter Button with Badge */}
-      <button
-        onClick={onOpenCycles}
-        aria-label="Active transit cycles"
-        className={`relative ${classes.fab}`}
-      >
-        <RefreshCw size={17} />
-        {cycleCount > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#3876BF] text-[10px] font-bold text-white shadow-md">
-            {cycleCount}
-          </span>
-        )}
-      </button>
-
-      {/* 3. Search / AI Consultation Button */}
+      {/* 2. Search / AI Consultation Button */}
       <button
         onClick={onOpenConsultation}
         aria-label="Ask AI about your pattern"
