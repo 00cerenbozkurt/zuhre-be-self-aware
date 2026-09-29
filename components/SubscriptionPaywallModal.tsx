@@ -135,8 +135,8 @@ export default function SubscriptionPaywallModal({
               {t.save50}
             </span>
             <div className="text-xs font-semibold text-white">{t.annualPlan}</div>
-            <div className="text-lg font-bold text-amber-200 mt-0.5">$39.99</div>
-            <div className="text-[10px] text-neutral-400">{language === 'tr' ? '$3.33 / ay' : '$3.33 / month'}</div>
+            <div className="text-lg font-bold text-amber-200 mt-0.5">{language === 'tr' ? '₺99' : '₺99 / $9.99'}</div>
+            <div className="text-[10px] text-neutral-400">{language === 'tr' ? '₺8.25 / ay (Yıllık 99 TL - Öğrenci Özel)' : '$0.82 / mo (Annual 99 TL)'}</div>
             <div className="text-[10px] text-amber-300/90 font-medium mt-1">{t.freeTrialText}</div>
           </div>
 
@@ -150,8 +150,8 @@ export default function SubscriptionPaywallModal({
             }`}
           >
             <div className="text-xs font-semibold text-white">{t.monthlyPlan}</div>
-            <div className="text-lg font-bold text-neutral-200 mt-0.5">$6.99</div>
-            <div className="text-[10px] text-neutral-400">{language === 'tr' ? 'Aylık faturalandırılır' : 'Billed monthly'}</div>
+            <div className="text-lg font-bold text-neutral-200 mt-0.5">{language === 'tr' ? '₺44' : '₺44 / $4.40'}</div>
+            <div className="text-[10px] text-neutral-400">{language === 'tr' ? '44 TL / ay • Öğrenci Dostu' : '44 TL / mo • Student Friendly'}</div>
             <div className="text-[10px] text-neutral-400 font-medium mt-1">{t.cancelAnytime}</div>
           </div>
         </div>

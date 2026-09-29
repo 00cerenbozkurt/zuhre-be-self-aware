@@ -26,24 +26,33 @@ import { getTranslations, Language } from '../../lib/translations';
 import { ZODIAC_KARMA_PROFILES, ZodiacKarmaProfile, BreathingStep } from '../../lib/zodiacKarmaData';
 import RippleButton from '../RippleButton';
 
+import tarotDeck from '../../app/data/tarotDeck.json';
+
 interface MeditationViewProps {
   platform: PlatformStyle;
   language?: Language;
+  dominantSign?: string;
+  dailyCard?: typeof tarotDeck[0] | null;
   onOpenSubscription?: () => void;
 }
 
 export default function MeditationView({
   platform,
   language = 'tr',
+  dominantSign = 'libra',
+  dailyCard = null,
   onOpenSubscription,
 }: MeditationViewProps) {
   const classes = getAdaptiveClasses(platform);
   const t = getTranslations(language);
 
-  // Selected Zodiac Sign (Default: Terazi / Libra)
-  const [selectedZodiacId, setSelectedZodiacId] = useState('libra');
+  // Selected Zodiac Sign (Default to passed dominantSign or Libra)
+  const [selectedZodiacId, setSelectedZodiacId] = useState(dominantSign || 'libra');
   const activeProfile: ZodiacKarmaProfile =
     ZODIAC_KARMA_PROFILES.find((z) => z.id === selectedZodiacId) || ZODIAC_KARMA_PROFILES[6];
+
+  // Active Karmic Tarot Card (Default to daily card or The Magician)
+  const [karmicCard, setKarmicCard] = useState<any>(dailyCard || tarotDeck[1]);
 
   const steps: BreathingStep[] =
     language === 'tr' ? activeProfile.breathingSteps.tr : activeProfile.breathingSteps.en;
@@ -58,21 +67,19 @@ export default function MeditationView({
 
   const currentStep = steps[currentStepIndex];
 
-  // Web Speech API Voice synthesis
+  // Calming, grounded Web Speech API Voice synthesis via soundEngine
   const speakGuidance = (text: string) => {
-    if (!voiceGuidanceEnabled || typeof window === 'undefined') return;
-    if (!('speechSynthesis' in window)) return;
+    if (!voiceGuidanceEnabled) return;
+    soundEngine.speakSoothing(text, language);
+  };
 
-    try {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = language === 'tr' ? 'tr-TR' : 'en-US';
-      utterance.rate = 0.88; // Calm, meditative pace
-      utterance.pitch = 0.95;
-      window.speechSynthesis.speak(utterance);
-    } catch (e) {
-      console.warn('Speech synthesis error:', e);
-    }
+  const handlePullNewKarmicCard = () => {
+    soundEngine.playCardFlip();
+    const randomCard = tarotDeck[Math.floor(Math.random() * tarotDeck.length)];
+    setKarmicCard(randomCard);
+    setTimeout(() => {
+      soundEngine.playCrystalChime(528);
+    }, 150);
   };
 
   // Sound cue on step change
@@ -261,33 +268,55 @@ export default function MeditationView({
           </div>
         </div>
 
-        {/* Ancestral Karma & Karmic Cord Overview Card */}
-        <div className="p-4 rounded-3xl bg-white/90 backdrop-blur-md border border-black/5 shadow-sm space-y-3 text-left">
+        {/* Harmonious Synergy: Zodiac + Karmic Tarot Card */}
+        <div className="p-4 rounded-3xl bg-white/95 backdrop-blur-md border border-amber-500/20 shadow-sm space-y-3 text-left">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              {getElementIcon(language === 'tr' ? activeProfile.element : activeProfile.elementEn)}
+              <Sparkles size={14} className="text-amber-500" />
               <span className="text-xs font-bold text-neutral-900">
-                {language === 'tr' ? activeProfile.ancestralThemeTr : activeProfile.ancestralThemeEn}
+                {language === 'tr' ? '✦ Bütünleyici Enerji: Burç & Tarot İttifakı' : '✦ Integrated Energy: Sign & Tarot Alliance'}
               </span>
             </div>
-            <span className="text-[10px] uppercase px-2 py-0.5 rounded-full bg-neutral-100 font-bold text-neutral-600">
-              {language === 'tr' ? activeProfile.element : activeProfile.elementEn}
-            </span>
+            <button
+              onClick={handlePullNewKarmicCard}
+              className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-amber-400/20 hover:bg-amber-400/30 text-amber-900 border border-amber-400/30 transition-all cursor-pointer flex items-center gap-1"
+            >
+              <span>{language === 'tr' ? 'Kart Çek / Değiştir' : 'Draw New Card'}</span>
+            </button>
           </div>
 
-          <div className="space-y-2 text-xs text-neutral-700 leading-relaxed border-t border-black/5 pt-2.5">
+          <div className="p-3 rounded-2xl bg-[#ECE7DC] border border-black/5 flex items-center justify-between">
+            <div>
+              <span className="text-[10px] uppercase font-bold text-neutral-500 block">
+                {language === 'tr' ? 'Akıştaki Şifalandırıcı Tarot Kartı' : 'Active Healing Tarot Card'}
+              </span>
+              <span className="text-sm font-extrabold text-neutral-900">
+                {karmicCard.name}
+              </span>
+              <span className="text-xs text-neutral-600 block mt-0.5">
+                {karmicCard.archetype}
+              </span>
+            </div>
+            <div className="w-9 h-12 rounded-lg bg-black text-amber-300 border border-amber-400/40 flex items-center justify-center font-serif text-xs font-bold shadow-xs">
+              ✦
+            </div>
+          </div>
+
+          <div className="space-y-2 text-xs text-neutral-700 leading-relaxed border-t border-black/5 pt-2">
             <div>
               <span className="font-bold text-neutral-900 block text-[11px] mb-0.5">
-                ✦ {t.ancestralWound}:
+                ✦ {activeProfile.signNameTr} Burcu Ata Yarası:
               </span>
               <p>{language === 'tr' ? activeProfile.karmicWoundTr : activeProfile.karmicWoundEn}</p>
             </div>
             <div>
               <span className="font-bold text-neutral-900 block text-[11px] mb-0.5">
-                ✦ {t.karmicCord}:
+                ✦ {karmicCard.name} ile Şifalanma & Kordon Kesimi:
               </span>
               <p className="text-neutral-800 font-medium">
-                {language === 'tr' ? activeProfile.cordTypeTr : activeProfile.cordTypeEn}
+                {language === 'tr'
+                  ? `${activeProfile.cordTypeTr}, ${karmicCard.name} arketipinin (${karmicCard.archetype}) yüksek bilinciyle çözülüyor. Soyunun taşıdığı bu yük sevgi ve anlayışla özgürleşiyor.`
+                  : `${activeProfile.cordTypeEn} is transmuted through the high consciousness of ${karmicCard.name}.`}
               </p>
             </div>
           </div>

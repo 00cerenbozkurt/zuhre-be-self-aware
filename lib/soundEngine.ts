@@ -50,74 +50,82 @@ class SoundEngine {
     return this.isMuted;
   }
 
-  // 432Hz Binaural Healing Drone with Organic Filter Breathing
+  // Soothing Ambient Audio Controller
+  private ambientAudioElement: HTMLAudioElement | null = null;
+
   private startAmbient() {
-    const ctx = this.getContext();
-    if (!ctx) return;
-
-    this.stopAmbient();
-
-    try {
-      this.ambientGain = ctx.createGain();
-      this.ambientGain.gain.setValueAtTime(0.001, ctx.currentTime);
-      this.ambientGain.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 3);
-
-      this.filter = ctx.createBiquadFilter();
-      this.filter.type = 'lowpass';
-      this.filter.frequency.setValueAtTime(450, ctx.currentTime);
-      this.filter.Q.setValueAtTime(3, ctx.currentTime);
-
-      // LFO for slow breathing filter sweep (0.07Hz = ~14 second breath cycle)
-      this.ambientLfo = ctx.createOscillator();
-      const lfoGain = ctx.createGain();
-      this.ambientLfo.frequency.setValueAtTime(0.07, ctx.currentTime);
-      lfoGain.gain.setValueAtTime(160, ctx.currentTime);
-      this.ambientLfo.connect(lfoGain);
-      lfoGain.connect(this.filter.frequency);
-      this.ambientLfo.start();
-
-      // Frequencies centered on 432 Hz and harmonics (216 Hz sub, 432 Hz root, 648 Hz fifth)
-      const freqs = [108, 216, 216.5, 432, 433.2, 648];
-      this.ambientOscillators = [];
-
-      freqs.forEach((freq, idx) => {
-        if (!ctx) return;
-        const osc = ctx.createOscillator();
-        const oscGain = ctx.createGain();
-        osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-
-        const volume = idx === 0 ? 0.3 : idx < 3 ? 0.25 : 0.15;
-        oscGain.gain.setValueAtTime(volume, ctx.currentTime);
-
-        osc.connect(oscGain);
-        oscGain.connect(this.filter!);
-        osc.start();
-        this.ambientOscillators.push(osc);
-      });
-
-      this.filter.connect(this.ambientGain);
-      this.ambientGain.connect(ctx.destination);
-    } catch (e) {
-      console.warn('Ambient audio could not start:', e);
+    // Instead of harsh oscillator drones, we notify listeners / audio players
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('zuhre-audio-play', { detail: { isMuted: false } }));
     }
   }
 
   private stopAmbient() {
-    if (this.ambientGain && this.ctx) {
-      try {
-        this.ambientGain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.8);
-        setTimeout(() => {
-          this.ambientOscillators.forEach(osc => {
-            try { osc.stop(); osc.disconnect(); } catch (e) {}
-          });
-          this.ambientOscillators = [];
-          if (this.ambientLfo) {
-            try { this.ambientLfo.stop(); this.ambientLfo.disconnect(); } catch (e) {}
-            this.ambientLfo = null;
-          }
-        }, 900);
-      } catch (e) {}
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('zuhre-audio-play', { detail: { isMuted: true } }));
+    }
+  }
+
+  // Soothing, calm, grounded voice guidance (NO high-pitched robotic cadence)
+  public speakSoothing(
+    text: string,
+    lang: 'tr' | 'en' = 'tr',
+    onEnd?: () => void,
+    onStart?: () => void
+  ) {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+      if (onEnd) onEnd();
+      return;
+    }
+
+    try {
+      window.speechSynthesis.cancel();
+
+      // Clean markdown tags and emojis for smoother speech
+      const cleanText = text
+        .replace(/[*_#`~✦▶■•]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = lang === 'tr' ? 'tr-TR' : 'en-US';
+
+      // Deeply soothing, relaxed, warm low pitch (replaces harsh/high-pitched robotic voice)
+      utterance.pitch = 0.82;
+      utterance.rate = 0.82;
+
+      // Select warmest available voice
+      const voices = window.speechSynthesis.getVoices();
+      if (lang === 'tr') {
+        const preferredTrVoice =
+          voices.find((v) => v.lang === 'tr-TR' && (v.name.includes('Yelda') || v.name.includes('Filiz') || v.name.includes('Google'))) ||
+          voices.find((v) => v.lang.startsWith('tr')) ||
+          voices.find((v) => v.name.toLowerCase().includes('turkish'));
+        if (preferredTrVoice) {
+          utterance.voice = preferredTrVoice;
+        }
+      }
+
+      utterance.onstart = () => {
+        if (onStart) onStart();
+      };
+      utterance.onend = () => {
+        if (onEnd) onEnd();
+      };
+      utterance.onerror = () => {
+        if (onEnd) onEnd();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    } catch (e) {
+      console.warn('Speech synthesis error:', e);
+      if (onEnd) onEnd();
+    }
+  }
+
+  public stopSpeaking() {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
     }
   }
 

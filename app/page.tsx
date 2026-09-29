@@ -18,6 +18,9 @@ import { soundEngine } from '../lib/soundEngine';
 import { ReadingResult } from '../lib/geminiFortuneService';
 import { Language } from '../lib/translations';
 
+import AmbientAudioPlayer from '../components/AmbientAudioPlayer';
+import tarotDeck from './data/tarotDeck.json';
+
 export default function ZuhreApp() {
   const [activeTab, setActiveTab] = useState<TabType>('lens');
   const [platform, setPlatform] = useState<PlatformStyle>('ios-liquid-glass');
@@ -27,6 +30,10 @@ export default function ZuhreApp() {
   const [isPaywallOpen, setIsPaywallOpen] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [latestReading, setLatestReading] = useState<ReadingResult | null>(null);
+
+  // Dominant Zodiac Sign & Active Daily Tarot Card (Synchronized app-wide)
+  const [dominantSign, setDominantSign] = useState<string>('libra');
+  const [dailyCard, setDailyCard] = useState<any>(tarotDeck[1]); // Default The Magician
 
   // Auto-detect platform on mount
   useEffect(() => {
@@ -72,6 +79,15 @@ export default function ZuhreApp() {
     >
       {/* Global Interactive Tap Ripple Canvas */}
       <GlobalRippleCanvas platform={platform} />
+
+      {/* Acoustic Ambient Music Player (Lulu Is the Cat I Like Best - pATCHES) */}
+      <AmbientAudioPlayer
+        isMuted={isMuted}
+        onToggleMute={handleToggleSound}
+        platform={platform}
+        language={language}
+      />
+
       {/* Dynamic Top Header with Platform Switcher & Sound */}
       <ThePatternHeader
         platform={platform}
@@ -91,6 +107,10 @@ export default function ZuhreApp() {
           <LensView
             platform={platform}
             language={language}
+            dominantSign={dominantSign}
+            onSelectDominantSign={setDominantSign}
+            dailyCard={dailyCard}
+            onSetDailyCard={setDailyCard}
             onOpenConsultation={() => setIsConsultationOpen(true)}
             onOpenInDepth={() => setActiveTab('indepth')}
           />
@@ -109,6 +129,8 @@ export default function ZuhreApp() {
           <InDepthView
             platform={platform}
             language={language}
+            dominantSign={dominantSign}
+            dailyCard={dailyCard}
             onBack={() => setActiveTab('lens')}
             onOpenConsultation={() => setIsConsultationOpen(true)}
           />
@@ -126,6 +148,8 @@ export default function ZuhreApp() {
           <MeditationView
             platform={platform}
             language={language}
+            dominantSign={dominantSign}
+            dailyCard={dailyCard}
             onOpenSubscription={() => setIsPaywallOpen(true)}
           />
         )}
@@ -134,6 +158,9 @@ export default function ZuhreApp() {
           <YouProfileView
             platform={platform}
             language={language}
+            dominantSign={dominantSign}
+            onSelectDominantSign={setDominantSign}
+            dailyCard={dailyCard}
             onOpenInDepth={() => setActiveTab('indepth')}
             onOpenConsultation={() => setIsConsultationOpen(true)}
             onOpenBonds={() => setActiveTab('bonds')}

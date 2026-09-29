@@ -191,29 +191,22 @@ export default function AiConsultationModal({
     if (!generatedReading) return;
 
     if (isPlayingAudio) {
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
+      soundEngine.stopSpeaking();
       setIsPlayingAudio(false);
     } else {
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(generatedReading.audioScript);
-        utterance.lang = language === 'tr' ? 'tr-TR' : 'en-US';
-        utterance.rate = 0.88;
-        utterance.pitch = 0.95;
-        utterance.onend = () => setIsPlayingAudio(false);
-        window.speechSynthesis.speak(utterance);
-        setIsPlayingAudio(true);
-      }
+      setIsPlayingAudio(true);
+      soundEngine.speakSoothing(
+        generatedReading.audioScript,
+        language,
+        () => setIsPlayingAudio(false),
+        () => setIsPlayingAudio(true)
+      );
     }
   };
 
   const handleResetToNewQuestion = () => {
     soundEngine.playCardFlip();
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
+    soundEngine.stopSpeaking();
     setIsPlayingAudio(false);
     setUserInquiry('');
     setGeneratedReading(null);
@@ -221,9 +214,7 @@ export default function AiConsultationModal({
   };
 
   const handleClose = () => {
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
+    soundEngine.stopSpeaking();
     setIsPlayingAudio(false);
     onClose();
   };
