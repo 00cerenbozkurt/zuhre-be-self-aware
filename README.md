@@ -70,6 +70,23 @@
   <img src="public/zuhre_launch_duo.jpg" alt="Zühre Keşfet ve Bağlar Duo Showcase" width="100%" />
 </p>
 
+### 📱 Mobil Arayüz Önizlemeleri (iPhone 18 Pro Max)
+
+<p align="center">
+  <img src="public/zuhre_iphone18_derin_bakis.jpg" alt="Zühre Derin Bakış" width="48%" />
+  &nbsp;
+  <img src="public/zuhre_iphone18_meditasyon_ata_karmasi.jpg" alt="Zühre Ata Karması ve 3 Adımlı Nefes" width="48%" />
+</p>
+
+---
+
+## 🌐 English Summary
+
+**Zühre (زهرة)** is an AI-driven personal self-awareness and psycho-spiritual analysis platform built with Next.js 16, React 19, Tailwind CSS, and Google Gemini AI. Moving beyond superficial horoscopes, it synthesizes Carl G. Jung's analytical psychology, the 22 Major Arcana tarot archetypes, and ancestral karmic cord-cutting into an interactive, celestial web and mobile (PWA) experience.
+
+- **Live Application:** [https://zuhre-be-self-aware.vercel.app](https://zuhre-be-self-aware.vercel.app)
+- **Key Modules:** Daily Lens, 22 Major Arcana History & Symbolic Explorer, In-Depth Archetypal Shadow Work, Dual Astro-Tarot Relationship Bonds, 3-Stage Ancestral Breath Meditation, and AI Oracle Consultation powered by Gemini.
+
 ---
 
 ## 🛠️ Teknoloji Yığını
@@ -90,7 +107,7 @@ En hızlı ve otomatik yöntem Vercel'dir:
 1. [Vercel Dağıtım Bağlantısına Tıklayın](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F00cerenbozkurt%2Fzuhre-self-awareness-app&env=GEMINI_API_KEY&envDescription=Google%20AI%20Studio%20Gemini%20API%20Key).
 2. GitHub hesabınızla giriş yapıp repoyu bağlayın.
 3. `GEMINI_API_KEY` alanına Google AI Studio API anahtarınızı girin.
-4. **Deploy** butonuna basın; 45 saniye içinde canlı URL'niz (`https://zuhre.vercel.app`) hazır olacaktır.
+4. **Deploy** butonuna basın; canlı URL'niz (`https://zuhre-be-self-aware.vercel.app`) hazır olacaktır.
 
 ### 2. Yerel Kurulum (Local Development)
 
@@ -102,8 +119,9 @@ cd zuhre-self-awareness-app
 # Bağımlılıkları yükleyin
 npm install
 
-# .env.local dosyanızı oluşturun
-echo "GEMINI_API_KEY=your_api_key_here" > .env.local
+# .env.local dosyanızı oluşturun (.env.example şablonunu kullanabilirsiniz)
+cp .env.example .env.local
+# GEMINI_API_KEY değerini kendi anahtarınızla güncelleyin
 
 # Geliştirme sunucusunu başlatın
 npm run dev
@@ -115,4 +133,4 @@ Tarayıcınızda `http://localhost:3000` adresini açarak uygulamayı deneyimley
 
 ## 📜 Lisans
 
-Bu proje kişisel farkındalık ve ezoterik psikoloji çalışmaları amacıyla geliştirilmiştir. Tüm hakları saklıdır.
+Bu proje [MIT Lisansı](LICENSE) kapsamında açık kaynak olarak lisanslanmıştır. Detaylar için [`LICENSE`](LICENSE) dosyasını inceleyebilirsiniz.
