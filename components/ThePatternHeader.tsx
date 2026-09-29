@@ -20,7 +20,7 @@ interface ThePatternHeaderProps {
 export default function ThePatternHeader({
   platform,
   onTogglePlatform,
-  language,
+  language = 'tr',
   onToggleLanguage,
   isMuted,
   onToggleSound,
@@ -28,7 +28,7 @@ export default function ThePatternHeader({
   isSubscribed = false,
   isDark = false,
 }: ThePatternHeaderProps) {
-  const t = TRANSLATIONS[language];
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
 
   // Dynamic styling based on light vs dark view (defaults to black on light/ivory background)
   const pillClass = isDark

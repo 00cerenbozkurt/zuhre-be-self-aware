@@ -36,7 +36,7 @@ export default function BondsView({
   language = 'tr',
 }: BondsViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language];
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
 
   // User Profile State
   const [userName, setUserName] = useState(language === 'tr' ? 'Sen' : 'You');
@@ -138,13 +138,13 @@ export default function BondsView({
         <div className="relative flex items-center justify-center gap-6 py-2">
           {/* Subtle Ambient Resonance Rings */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-48 h-48 rounded-full border border-amber-500/15 animate-celestial-ripple" />
-            <div className="w-56 h-56 rounded-full border border-indigo-500/10 animate-celestial-ripple-delayed-1" />
+            <div className="w-48 h-48 rounded-full border-2 border-amber-500/40 animate-celestial-ripple shadow-[0_0_15px_rgba(245,158,11,0.25)]" />
+            <div className="w-56 h-56 rounded-full border-2 border-indigo-500/35 animate-celestial-ripple-delayed-1 shadow-[0_0_15px_rgba(99,102,241,0.2)]" />
           </div>
 
           {/* Left: You Profile Circle */}
           <div className="relative flex flex-col items-center z-10 group">
-            <div className="absolute w-20 h-20 rounded-full border border-amber-400/30 animate-celestial-ripple pointer-events-none" />
+            <div className="absolute w-20 h-20 rounded-full border-2 border-amber-400/50 animate-celestial-ripple pointer-events-none shadow-[0_0_12px_rgba(251,191,36,0.3)]" />
             <button
               onClick={() => {
                 setActiveEditTab('you');

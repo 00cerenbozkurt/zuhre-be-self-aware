@@ -23,7 +23,7 @@ export default function SubscriptionPaywallModal({
   language = 'tr',
 }: SubscriptionPaywallModalProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language];
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
   const [selectedPlan, setSelectedPlan] = useState<'annual' | 'monthly'>('annual');
   const [isProcessing, setIsProcessing] = useState(false);
 

@@ -38,7 +38,7 @@ export default function MeditationView({
   onOpenSubscription,
 }: MeditationViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language];
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
 
   // Selected Zodiac Sign (Default: Terazi / Libra)
   const [selectedZodiacId, setSelectedZodiacId] = useState('libra');
@@ -301,7 +301,7 @@ export default function MeditationView({
 
             return (
               <button
-                key={st.step}
+                key={`step-${st.step}-${idx}`}
                 onClick={() => goToStep(idx)}
                 className={`py-2 px-1.5 rounded-xl text-center transition-all cursor-pointer ${
                   isCurrent

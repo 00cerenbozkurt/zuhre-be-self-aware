@@ -153,7 +153,7 @@ export const ZODIAC_KARMA_PROFILES: ZodiacKarmaProfile[] = [
           visualCue: 'Zümrüt yeşili toprak enerjisi yükseliyor'
         },
         {
-          step: 1,
+          step: 2,
           name: 'Nefes Tut • Kıtlık İllüzyonunu Çöz',
           durationSeconds: 4,
           phase: 'hold',

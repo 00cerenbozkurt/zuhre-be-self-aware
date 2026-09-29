@@ -7,6 +7,8 @@ interface ScreenRipple {
   id: number;
   x: number;
   y: number;
+  color: string;
+  shadow: string;
 }
 
 export default function GlobalRippleCanvas({
@@ -17,61 +19,92 @@ export default function GlobalRippleCanvas({
   const [ripples, setRipples] = useState<ScreenRipple[]>([]);
 
   useEffect(() => {
-    const handleGlobalClick = (e: MouseEvent | TouchEvent) => {
-      let clientX = 0;
-      let clientY = 0;
+    const handlePointerDown = (e: PointerEvent) => {
+      // Don't spawn ripples if clicking interactive controls that already have local ripples
+      const target = e.target as HTMLElement | null;
+      
+      const clientX = e.clientX;
+      const clientY = e.clientY;
 
-      if ('touches' in e && e.touches.length > 0) {
-        clientX = e.touches[0].clientX;
-        clientY = e.touches[0].clientY;
-      } else if ('clientX' in e) {
-        clientX = (e as MouseEvent).clientX;
-        clientY = (e as MouseEvent).clientY;
-      }
+      if (!clientX && !clientY) return;
 
-      if (clientX === 0 && clientY === 0) return;
+      const isAndroid = platform === 'android-m3-expressive';
+
+      // Rich, high-visibility celestial colors
+      const rippleColor = isAndroid
+        ? 'rgba(175, 135, 255, 0.65)' // M3 Expressive vivid lavender
+        : 'rgba(200, 145, 25, 0.55)'; // iOS Liquid Glass warm amber-gold
+
+      const rippleShadow = isAndroid
+        ? '0 0 24px rgba(175, 135, 255, 0.45)'
+        : '0 0 24px rgba(212, 160, 23, 0.35)';
 
       const newRipple: ScreenRipple = {
         id: Date.now() + Math.random(),
         x: clientX,
         y: clientY,
+        color: rippleColor,
+        shadow: rippleShadow,
       };
 
-      setRipples((prev) => [...prev.slice(-8), newRipple]);
+      setRipples((prev) => [...prev.slice(-6), newRipple]);
 
       setTimeout(() => {
         setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
-      }, 1200);
+      }, 950);
     };
 
-    window.addEventListener('click', handleGlobalClick);
+    window.addEventListener('pointerdown', handlePointerDown);
     return () => {
-      window.removeEventListener('click', handleGlobalClick);
+      window.removeEventListener('pointerdown', handlePointerDown);
     };
-  }, []);
+  }, [platform]);
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
       {ripples.map((ripple) => (
-        <span
-          key={ripple.id}
-          className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full"
-          style={{
-            top: ripple.y,
-            left: ripple.x,
-            width: '180px',
-            height: '180px',
-            border:
-              platform === 'android-m3-expressive'
-                ? '1.5px solid rgba(208, 188, 255, 0.4)'
-                : '1.5px solid rgba(255, 255, 255, 0.35)',
-            boxShadow:
-              platform === 'android-m3-expressive'
-                ? '0 0 15px rgba(208, 188, 255, 0.25)'
-                : '0 0 20px rgba(255, 255, 255, 0.3)',
-            animation: 'celestial-ripple 1.1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards',
-          }}
-        />
+        <React.Fragment key={ripple.id}>
+          {/* Primary Rapid Expanding Ripple Ring */}
+          <span
+            className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+            style={{
+              top: ripple.y,
+              left: ripple.x,
+              width: '140px',
+              height: '140px',
+              border: `2px solid ${ripple.color}`,
+              boxShadow: ripple.shadow,
+              animation: 'celestial-ripple 0.85s cubic-bezier(0.1, 0.8, 0.25, 1) forwards',
+            }}
+          />
+
+          {/* Secondary Echo Ripple Ring */}
+          <span
+            className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+            style={{
+              top: ripple.y,
+              left: ripple.x,
+              width: '80px',
+              height: '80px',
+              border: `1.5px solid ${ripple.color}`,
+              animation: 'celestial-ripple 0.95s cubic-bezier(0.15, 0.7, 0.3, 1) forwards 0.12s',
+            }}
+          />
+
+          {/* Center Glow Flash */}
+          <span
+            className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+            style={{
+              top: ripple.y,
+              left: ripple.x,
+              width: '18px',
+              height: '18px',
+              backgroundColor: ripple.color,
+              filter: 'blur(3px)',
+              animation: 'touch-ripple 0.5s ease-out forwards',
+            }}
+          />
+        </React.Fragment>
       ))}
     </div>
   );

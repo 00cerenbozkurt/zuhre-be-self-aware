@@ -16,12 +16,12 @@ interface DiscoverViewProps {
 
 export default function DiscoverView({
   platform,
-  language,
+  language = 'tr',
   onOpenConsultation,
   onOpenInDepth,
 }: DiscoverViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language];
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
 
   return (
     <div className="relative min-h-screen bg-[#0A0A0D] text-white flex flex-col justify-between px-6 pt-24 pb-32 overflow-hidden">

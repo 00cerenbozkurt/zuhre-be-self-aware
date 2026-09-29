@@ -95,7 +95,7 @@ export default function AiConsultationModal({
   language = 'tr',
 }: AiConsultationModalProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language];
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
   const zodiacList = language === 'tr' ? ZODIAC_SIGNS_TR : ZODIAC_SIGNS_EN;
 
   // Step 1: Talk to AI (Inquiry)

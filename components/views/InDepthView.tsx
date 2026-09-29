@@ -16,12 +16,12 @@ interface InDepthViewProps {
 
 export default function InDepthView({
   platform,
-  language,
+  language = 'tr',
   onBack,
   onOpenConsultation,
 }: InDepthViewProps) {
   const classes = getAdaptiveClasses(platform);
-  const t = TRANSLATIONS[language];
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
   const [isPlaying, setIsPlaying] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 

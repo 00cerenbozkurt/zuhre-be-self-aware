@@ -17,9 +17,9 @@ export default function ThePatternNav({
   activeTab,
   onSelectTab,
   platform,
-  language,
+  language = 'tr',
 }: ThePatternNavProps) {
-  const t = TRANSLATIONS[language];
+  const t = TRANSLATIONS[language] || TRANSLATIONS.tr;
 
   const tabs: { id: TabType; label: string }[] = [
     { id: 'lens', label: t.navLens },
